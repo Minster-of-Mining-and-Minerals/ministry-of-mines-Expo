@@ -26,6 +26,7 @@ main {
 .upper {
     display: flex;
     border-bottom: 1px solid gold;
+    border-top: 1px solid gold;
     
 }
 
