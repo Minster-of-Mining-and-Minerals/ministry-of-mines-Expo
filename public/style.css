@@ -2,59 +2,93 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
 
-    /* background-color: #24252a; */
+#navbar {
+    width: 100%;
+    height: 200px;
+    /* background-color: #1C1D20; */
+    background-color: black;
+}
+
+#navbar img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: auto;
 }
 
 body{
-    margin: 0;
-    padding: 0;
-    
     width: 100%;
-    
-    /* background: #263238; */
     background: black;
     color: gold;
-    /* color: #FFA000; */
 }
 
-main {
+main{
     width: 100%;
-    display: block;
 }
 
 .upper {
     display: flex;
-    border-bottom: 1px solid gold;
-    /* border-top: 1px solid gold; */
+    /* border-bottom: 1px solid gold; */
+}
+
+.map {
+    width: 300px;
+    height: 300px;
+}
+
+.region-title,
+.region-bio {
+    margin: 25px;
+    margin-top: 30px;
+}
+
+.region-title{
+    font-size: 36px;
     
 }
 
 .lower {
-    /* display: flex;
-    justify-content: space-around;
-    /* width: 100%; 
-
-    overflow: auto; */
+    margin-top: 20px;
     width: 100%;
-    display: flex;
     align-items: center;
-    justify-content: space-around;
-}
-.main-scroll-div{
-    width: 100%;
     display: flex;
+    justify-content: center;
+}
+
+.main-scroll-div {
+    width: 99%;
+    display: flex;
+    /* border: 1px solid red; */
+    
     align-items: center;
     justify-content: space-between;
-    border-radius: 10px;
-}
-.cover{
-    position: relative;
-    width: 100%;
-    margin: 10px;
-    border-radius: 10px;
 }
 
+.arrow-btn {
+    
+    color: goldenrod;
+    /* background-color: #263238; */
+    background-color: black;
+    font-size: 50px;
+    outline: none;
+    border: none;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+.arrow-btn:hover{
+    color: gold;
+}
+.cover {
+    position: relative;
+    width: 90%;
+    /* border: 1px solid green; */
+    display: flex;
+    justify-content: center;
+    
+}
 .cover::before{
     position: absolute;
     content: "";
@@ -64,8 +98,8 @@ main {
     height: 100%;
     width: 150px;
     background-image: linear-gradient(90deg, black, transparent);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    /* border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px; */
 }
 .cover::after{
     position: absolute;
@@ -77,92 +111,23 @@ main {
     width: 150px;
     /* background-image: linear-gradient(-90deg, #263238, transparent); */
     background-image: linear-gradient(-90deg, black, transparent);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    /* border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px; */
 }
-.scroll-images{
-    width: 80%;
-    min-height: 320px;
+
+.scroll-img {
+    width: 100%;
     display: flex;
-    justify-content: left;
-    align-items: center;
     overflow: auto;
-    position: relative;
+    justify-content: space-between;
     scroll-behavior: smooth;
-    border-radius: 10px;
+    scrollbar-color: orange;
 }
-.child{
-    width: 300px;
-    height: 300px;
-    margin: 10px;
+
+.child-img {
+    width: 400px;
+    height: 400px;
     cursor: pointer;
-    /* overflow: hidden; */
-    padding: 0;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-}
-::-webkit-scrollbar {
-    -webkit-appearance: none;
-    display: none;
-    border-radius: 10px;
-}
-
-.icon{
-    color: goldenrod;
-    /* background-color: #263238; */
-    background-color: black;
-    font-size: 50px;
-    outline: none;
-    border: none;
-    padding: 0px 10px;
-    cursor: pointer;
-    
-}
-
-.icon:hover{
-    /* color: black; */
-    color: gold;
-}
-.child-img{
-    display: block;
-    width: 300px;
-    height: 300px;
-    cursor: pointer;
-    border-radius: 10px;
-}
-#navbar {
-    width: 100vw;
-    /* background-color: #1C1D20; */
-    background-color: black;
-}
-
-#navbar img {
-    display: block;
-    width: 50px;
-    height: 50px;
-    margin: auto;
-}
-
-.item {
-    width: 300px;
-    height: 300px;
-    margin: 10px;
-    border-radius: 10px;
-}
-.map {
-    width: 300px;
-    height: 300px;
-    
-}
-
-.region-title,
-.region-bio {
-    margin: 25px;
-    margin-top: 30px;
-}
-
-.region-title{
-    font-size: 36px;
+    padding: 0px 2px;
     
 }
