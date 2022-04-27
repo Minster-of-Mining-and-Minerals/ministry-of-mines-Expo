@@ -29,14 +29,57 @@
     border-radius: 20px;
 }
 
-.modal-header {
-    border-bottom: 1px solid gold;
+.item-pic{
+    display: flex;
+    
+    width: 400px;
+    height: 400px;
+    
+    
+    
 }
 
+.modal-body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-body-container .modal-img{
+    width: 100%;
+}
+.modal-header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 0px solid gold;
+}
+
+.modal-header h2 {
+    text-align: center;
+    justify-content: center;
+    color: gold;
+}
+
+.modal-title h{
+    text-align: center;
+    color: gold;
+    
+}
+
+.modal-img 
 .list-group-item li{
     background-color: black;
     color: gold;
 
+}
+ 
+.modal-img img{
+    width: 400px;
+    height: 400px;
+    align-items: center;
+    
 }
 
 .item-description-title{
@@ -44,27 +87,19 @@
     align-items: center;
     justify-content: start;
     padding: 10px;
+    color: gold;
 }
 
 .item-description-body{
     
     padding: 10px;
+    color: #d6d6d6;
 }
 
-.item-description h3{
-    margin-left: 5px;
-}
-
-.region-area, .region-status {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 10px;
-    height: 30px;
-    margin-left: 30px;
-}
-.region-area-text, .region-status-text {
-    margin-left: 5px;
+.item-description h4{
+    margin-left: 8px;
+    margin-bottom: 0px;
+    padding: 1px;
 }
 
 .fa-solid .fa-magnifying-glass i,
@@ -73,13 +108,16 @@
     width: 50px;
     height: 50px;
 }
+
 .btn-close button{
     color: gold;
 }
+
 body{
     width: 100%;
     background: black;
-    color: gold;
+    /* color: gold; */
+    font-family: 'Avenir', sans-serif; 
 }
 
 main{
@@ -97,6 +135,35 @@ main{
     height: 300px;
 }
 
+.region-area, 
+.region-status {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+    height: 30px;
+    margin-left: 30px;
+}
+
+.region-area-label,
+.region-area-value, 
+.region-status-label,
+.region-status-value {
+    margin-left: 5px;
+}
+
+.region-area-label,
+.region-status-label {
+    /* color: #CEB23C; */
+    color: gold;
+}
+
+.region-area-value,
+.region-status-value {
+    /* color: #EEC65C; */
+    color: #d6d6d6;
+}
+
 .region-title,
 .region-bio {
     margin: 25px;
@@ -104,11 +171,15 @@ main{
 }
 
 .region-title{
-    font-size: 36px;
+    font-size: 40px;
+    color: gold;
 }
 
 .region-bio {
     /* margin-left: 35px; */
+    font-size: large;
+    /* color: #1e96fc; */
+    color: gold;
 }
 
 .lower {
@@ -143,6 +214,7 @@ main{
 .arrow-btn:hover{
     color: gold;
 }
+
 .cover {
     position: relative;
     width: 90%;
@@ -151,6 +223,7 @@ main{
     justify-content: center;
     
 }
+
 .cover::before{
     position: absolute;
     content: "";
@@ -163,6 +236,7 @@ main{
     /* border-top-left-radius: 10px;
     border-bottom-left-radius: 10px; */
 }
+
 .cover::after{
     position: absolute;
     content: "";
