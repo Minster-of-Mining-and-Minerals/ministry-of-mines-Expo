@@ -93,7 +93,9 @@
     
 }
 
-
+.item-description-text {
+    font-size: 18px;
+}
 .item-description-title{
     display: flex;
     align-items: center;
