@@ -65,19 +65,21 @@
               <textarea rows="5" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Resource"></textarea>
             </div>
             
-            <div class="form-column properties">
+            <div id="properties" class="form-column properties">
                 <div class="form-row add-field">
                     <div class="multi-field-label">
                         <label for="inputProperties" class="text-gold">Properties</label>
                     </div>
-                    <button type="button" id="add-property-btn" class="btn btn-outline-warning btn-sm add-field"><i class="fa-solid fa-plus"></i> Add Property</button>
+                    <div class="field-buttons">
+                      <button type="button" id="add-property-btn" class="btn btn-outline-warning btn-sm add-field" ><i class="fa-solid fa-plus"></i> Add Property</button>
+                      <!-- <button type="button" id="add-property-btn" class="btn btn-outline-danger btn-sm add-field" ><i class="fa-solid fa-minus"></i> Remove Property</button> -->
+                    </div>
+                    
                 </div>
                 
                 <div class="form-column added-property">
                     <div class="form-group row-md-4 text-gold"">
-                      <input type="text" class="form-control text-light bg-dark title-input" placeholder="Property Title">
-                    </div>
-                    <div class="form-group row-md-4 text-gold"">
+                      <input type="text" name="text[]"class="form-control text-light bg-dark title-input" placeholder="Property Title">
                       <textarea class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Property Description"></textarea>
                     </div>
                 </div>
@@ -88,7 +90,7 @@
                 <textarea rows="5" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Origin and Occurence of Resource"></textarea>
             </div>
 
-            <div class="form-column applications">
+            <div id="applications" class="form-column applications">
                 <div class="form-row add-field">
                     <label for="inputProperties" class="text-gold">Applications</label>
                     <button type="button" id="add-application-btn" class="btn btn-outline-warning btn-sm add-field"><i class="fa-solid fa-plus"></i> Add Application</button>
@@ -128,9 +130,9 @@
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <script>
-        const btn = document.getElementById('add-property-btn')
-        btn.onclick = function (){
+    <script src="public/scripts/upload.js"></script>
+    <!-- <script>
+        const add_fields = function (){
             const formColumn = document.createElement('div');
             formColumn.setAttribute('class','form-column')
             formColumn.setAttribute('class','added-property')
@@ -158,13 +160,13 @@
             descriptionInput.setAttribute('class','bg-dark');
             descriptionInput.setAttribute('placeholder','Property Description');
 
-            titleFormGroup.appendChild(titleInput);
-            descriptionFormGroup.appendChild(descriptionInput);
-            formColumn.appendChild(titleFormGroup);
-            formColumn.appendChild(descriptionFormGroup);
+            titleFormGroup.append(titleInput);
+            descriptionFormGroup.append(descriptionInput);
+            formColumn.append(titleFormGroup);
+            formColumn.append(descriptionFormGroup);
         }
         
-    </script>
+    </script> -->
     
 </body>
 </html>
