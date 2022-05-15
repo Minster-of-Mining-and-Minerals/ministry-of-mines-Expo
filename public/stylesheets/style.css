@@ -316,7 +316,7 @@ main{
 
 }
 
-.choose-zone{
+.resource-zone{
     margin-bottom: 15px;
 }
 
@@ -352,6 +352,12 @@ main{
 }
 
 .upload-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload {
     display: flex;
     flex-direction: column;
     align-items: center;

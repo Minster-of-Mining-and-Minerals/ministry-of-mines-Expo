@@ -12,11 +12,12 @@ add_property.onclick = function(){
   
   var newInput = document.createElement('input')
   newInput.setAttribute('type','text');
-  newInput.setAttribute('name','text[]');
+  newInput.setAttribute('name','res_prop_title');
   newInput.setAttribute('class','form-control text-light bg-dark title-input');
   newInput.setAttribute('placeholder','Property Title');
 
   var newTextArea = document.createElement('textarea')
+  newTextArea.setAttribute('name','res_prop_desc');
   newTextArea.setAttribute('class','form-control text-light bg-dark description-input');
   newTextArea.setAttribute('aria-label','With textarea');
   newTextArea.setAttribute('placeholder','Property Description');
@@ -67,11 +68,12 @@ add_application.onclick = function(){
     
     var newAppInput = document.createElement('input')
     newAppInput.setAttribute('type','text');
-    newAppInput.setAttribute('name','text[]');
+    newAppInput.setAttribute('name','res_app_title');
     newAppInput.setAttribute('class','form-control text-light bg-dark title-input');
     newAppInput.setAttribute('placeholder','Application Title');
   
     var newAppTextArea = document.createElement('textarea')
+    newAppTextArea.setAttribute('name', 'res_app_desc');
     newAppTextArea.setAttribute('class','form-control text-light bg-dark description-input');
     newAppTextArea.setAttribute('aria-label','With textarea');
     newAppTextArea.setAttribute('placeholder','Application Description');
