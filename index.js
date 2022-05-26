@@ -59,6 +59,8 @@ server.get('/north', async (req,res)=>{
     const zone_name = "Northern Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/north.jpg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -67,12 +69,15 @@ server.get('/north', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('north', {zone,  resources})
+    return res.render('zone', {zone, zone_img_path,  resources})
 });
+
 server.get('/north-east', async (req,res)=>{
     const zone_name = "North-Eastern Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/north-east.jpg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -81,7 +86,7 @@ server.get('/north-east', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('north-east', {zone, resources})
+    return res.render('zone', {zone, zone_img_path, resources})
 });
 
 const get_res = async (zone_id) => {
@@ -115,6 +120,8 @@ server.get('/west', async (req,res)=>{
     const zone_name = "Western Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/west.jpeg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -123,13 +130,15 @@ server.get('/west', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('west',{zone, resources})
+    return res.render('zone',{zone, zone_img_path, resources})
 });
 
 server.get('/super-west', async (req,res)=>{
     const zone_name = "Western Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/west.jpeg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -138,13 +147,15 @@ server.get('/super-west', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('super-west',{zone, resources})
+    return res.render('super-zone',{zone, zone_img_path, resources})
 });
 
 server.get('/super-east', async (req,res)=>{
     const zone_name = "Eastern Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/east.jpg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -153,13 +164,15 @@ server.get('/super-east', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('super-east',{zone, resources})
+    return res.render('super-zone',{zone, zone_img_path, resources})
 });
 
 server.get('/super-north', async (req,res)=>{
     const zone_name = "Northern Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/south.jpg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -168,13 +181,15 @@ server.get('/super-north', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('super-north',{zone, resources})
+    return res.render('super-zone',{zone, zone_img_path, resources})
 });
 
 server.get('/super-north-east', async (req,res)=>{
     const zone_name = "North-Eastern Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/north-east.jpg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -183,13 +198,15 @@ server.get('/super-north-east', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('super-north-east',{zone, resources})
+    return res.render('super-zone',{zone, zone_img_path, resources})
 });
 
 server.get('/super-south', async (req,res)=>{
     const zone_name = "Southern Zone"
     console.log(zone_name)
 
+    const zone_img_path = 'images/geo_maps/south.jpg';
+
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
     console.dir(zone)
@@ -198,12 +215,14 @@ server.get('/super-south', async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
-    return res.render('super-south',{zone, resources})
+    return res.render('super-zone',{zone, zone_img_path, resources})
 });
 
 server.get('/east', async (req,res)=>{
     const zone_name = 'Eastern Zone';
     console.log(zone_name)
+
+    const zone_img_path = 'images/geo_maps/east.jpg';
 
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
@@ -216,11 +235,14 @@ server.get('/east', async (req,res)=>{
 
     // Get id and image for all resources in the zone
 
-    return res.render('east', {zone, resources})
+    return res.render('zone', {zone, zone_img_path, resources})
 });
+
 server.get('/south', async (req,res)=>{
     const zone_name = "Southern Zone"
     console.log(zone_name)
+
+    const zone_img_path = 'images/geo_maps/south.jpg';
 
     // Get zone data
     const zone = await Zone.query().select('id','Name','Area', 'Status', 'Description').where('Name', '=', zone_name).first();
@@ -231,7 +253,7 @@ server.get('/south', async (req,res)=>{
     console.log('Resources length:',resources.length)
 
 
-    return res.render('south', {zone, resources})
+    return res.render('zone', {zone, zone_img_path, resources})
 });
 
 server.get('/insert-zones', async (req,res)=>{
