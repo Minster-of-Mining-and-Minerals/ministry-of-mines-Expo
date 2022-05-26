@@ -261,6 +261,7 @@ main{
     /* width: 300px; */
     padding: 5px;
     height: 100%;
+    max-width: 40%;
 }
 
 .region-info {
