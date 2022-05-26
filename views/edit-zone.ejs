@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Zone</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.min.css"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/font-awesome.all.min.css">
+    <script src="https://kit.fontawesome.com/e807667acd.js" crossorigin="anonymous"></script>
+    <link href='../stylesheets/style.css' rel='stylesheet' />
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <a href="/" data-toggle="" data-target="#exampleModal">
+                <img src="../images/logo.png" alt="" class="child-img">
+            </a>
+            <!-- <img class="logo" src="images/logo.png" alt="logo"> -->
+            
+          </nav>
+    </header>
+
+    <main class="upload-page">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-gold" href="/super-north"><%= zone.Name %> </a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Zone</li>
+            </ol>
+        </nav>
+
+        <div class="content-upload-title">
+            <h3 class="content-upload-title text-gold">Edit Zone</h3>
+        </div>
+        <form class="content-upload-form" action="/edit-zone/<%= zone.id %> " method="POST">
+            <div class="form-group col-md-6 text-gold">
+                <label for="inputEmail4">Zone Name</label>
+                <input type="text" name="zone_name" class="form-control text-light bg-dark" value="<%= zone.Name %> " placeholder="Zone Name">
+              </div>
+            <div class="form-row resource-bio">
+              <div class="form-group col-md-6 text-gold">
+                <label for="inputEmail4">Area</label>
+                <input type="text" name="zone_area" class="form-control text-light bg-dark" value="<%= zone.Area %> " placeholder="Zone Area">
+              </div>
+              <div class="form-group col-md-4 text-gold">
+                <label for="inputPassword4">Status</label>
+                <input type="text" name="zone_status" class="form-control text-light bg-dark title-input" value="<%= zone.Status %> " placeholder="Zone Status">
+              </div>
+            </div>
+            <div class="form-group resource-desc text-gold">
+              <label for="inputDescription">Description</label>
+              <textarea rows="5" name="zone_desc" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Zone"><%= zone.Description %> </textarea>
+            </div>
+
+            <!-- <div class="mb-3">
+                <label for="formFile" class="form-label text-gold">Image of Zone</label>
+                <div class="edit-img-container">
+                    <img class="edit-img" src="" alt="">
+                </div>
+                <input class="form-control text-light bg-dark" name="zone_image" type="file" id="formFile">
+            </div> -->
+                               
+            <div class="upload-btn-container">
+                <button type="submit" class="btn btn-warning btn-lg upload-btn">Edit</button>
+            </div>
+            
+        </form>
+        
+          
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="../scripts/upload.js"></script>
+</body>
+</html>
