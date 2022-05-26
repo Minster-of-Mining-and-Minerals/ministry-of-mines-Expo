@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "migrate": "npx knex --knexfile=./db/knexfile.js migrate:latest",
+    "migrate:rollback": "npx knex --knexfile=./db/knexfile.js migrate:rollback"
   },
   "repository": {
     "type": "git",
