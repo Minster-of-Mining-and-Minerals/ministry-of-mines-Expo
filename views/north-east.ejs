@@ -28,9 +28,9 @@
 
     <main>
         <section class="upper">
-            <img src="images/geo_maps/north-east-zone.jpg" alt="" class="map">
+            <img src="images/geo_maps/north-east.jpg" alt="" class="map">
             <div class="region-info">
-                <h2 class="region-title"><b><%= zone.Name %></b> <i>(Beta)</i></h2>
+                <h2 class="region-title"><b><%= zone.Name %></b></h2>
                 <div class="region-area">
                     <h6 class="region-area-label"> <b>Area:</b> </h6>
                     <h6 class="region-area-value"> <%= zone.Area %> </h6>
@@ -85,81 +85,81 @@
             <% for (let resource of resources) { %> 
             <!-- Resource Modal -->
             <div class="modal fade" id="res-<%= resource.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="container-fluid modal-body-container">
-                                <div class="modal-body-content item-pic">
+                            <div class="modal-body-container">
+                                <div class="item-pic">
                                     <img class="modal-img" src="<%= resource.img_path %> " alt="">
                                 </div>
 
-                                <div class="modal-body-content item-description">
+                                <div class="item-description">
                                     
-                                    <div class="modal-body-content item-description general">
+                                    <div class="item-description general">
                                         
                                         <div class="item-title">
-                                            <h2 class="item-name"><b><%= resource.name %> </b></h2>
+                                            <h2 class="item-name"><%= resource.name %></h2>
                                         </div>
 
-                                        <div class="modal-body-content item-tag">
+                                        <div class="item-tag">
                                             <% if (resource.type === 'Metallic Mineral') { %>
-                                                <h6 class="metallic-res-tag"> <%= resource.type %>  </h6>
+                                                <h6 class="res-tag metallic-res"> <%= resource.type %>  </h6>
                                             <% } else if (resource.type === 'Fertilizer Raw Material') { %> 
-                                                <h6 class="fertilizer-res-tag"><%= resource.type %></h6>
+                                                <h6 class="res-tag fertilizer-res"><%= resource.type %></h6>
                                             <% } else if (resource.type === 'Energy Mineral') { %> 
-                                                <h6 class="energy-res-tag"><%= resource.type %></h6>
+                                                <h6 class="res-tag energy-res"><%= resource.type %></h6>
                                             <% } else if (resource.type === 'Industrial Mineral') { %> 
-                                                <h6 class="industrial-res-tag"><%= resource.type %></h6>
+                                                <h6 class="res-tag industrial-res"><%= resource.type %></h6>
                                             <% } else if (resource.type === 'Construction Material') { %> 
-                                                <h6 class="construction-res-tag"><%= resource.type %></h6>
+                                                <h6 class="res-tag construction-res"><%= resource.type %></h6>
                                             <% } else if (resource.type === 'Gemstone') { %> 
-                                                <h6 class="gemstone-res-tag"><%= resource.type %></h6>
+                                                <h6 class="res-tag gemstone-res"><%= resource.type %></h6>
                                             <% } else { %> 
-                                                <h6 class="gemstone-res-tag"><%= resource.type %></h6>
+                                                <h6 class="res-tag industrial-res"><%= resource.type %></h6>
                                             <% } %> 
                                         </div>
 
-                                        <div class="item-description-body">
-                                            <p class="item-description-text"> <%= resource.description %> </p>
+                                        <div class="item-bio">
+                                            <p class="item-bio-text"> <%= resource.description %> </p>
                                         </div>
                                     </div>
 
-                                    <div class="modal-body-content item-description item-properties">
+                                    <div class="item-properties">
                                         <div class="item-description-title">
                                             <!-- <i class="fas fas-map-location-dot"></i> -->
-                                            <h4 class="item-description">Properties</h4>
+                                            <h4 class="item-description-title-label">Properties</h4>
                                         </div>
 
                                         <div class="item-description-body">
                                             <% for (let property of resource.properties) { %> 
-                                            <p class="item-properties-text"><b style="font-weight: 900; font-size: 18px;" ><%= property.title %> </b> <%= property.description %> </p>
+                                            <p class="item-properties-text"><b class="bold-title" ><%= property.title %> </b> <%= property.description %> </p>
                                             <% } %> 
                                         </div>
                                     </div>
 
-                                    <div class="modal-body-content item-description item-origin">
+                                    <div class="item-origin">
                                         <div class="item-description-title">
-                                            <h4 class="item-description">Origin and Occurence</h4>
+                                            <h4 class="item-description-title-label">Origin and Occurence</h4>
                                         </div>
 
                                         <div class="item-description-body">
-                                            <p class="item-origin-text"> <%= resource.origin_occ %> </p>
+                                            <p class="item-description-text"> <%= resource.origin_occ %> </p>
                                         </div>
                                         
                                     </div>
 
-                                    <div class="modal-body-content item-description item-applications">
+                                    <div class="item-applications">
                                         <div class="item-description-title">
                                             <!-- <i class="fa-solid fa-hammer"></i> -->
-                                            <h4 class="item-description">Application</h4>
+                                            <h4 class="item-description-title-label">Application</h4>
                                         </div>
 
                                         <div class="item-description-body">
                                             <% for (let application of resource.applications) { %> 
-                                            <p class="item-applications-text"><b style="font-weight: 900; font-size: 18px;" ><%= application.title %> </b> <%= application.description %> </p>
+                                            <p class="item-description-text"><b class="bold-title" ><%= application.title %> </b> <%= application.description %> </p>
                                             <% } %> 
                                         </div>
                                         

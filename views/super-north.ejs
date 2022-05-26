@@ -83,6 +83,7 @@
             <% if (resources.length > 0) { %> 
             <% for (let resource of resources) { %> 
             <!-- Resource Modal -->
+            <!-- Resource Modal -->
             <div class="modal fade" id="res-<%= resource.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
@@ -100,7 +101,7 @@
                                     <div class="item-description general">
                                         
                                         <div class="item-title">
-                                            <h2 class="item-name"><b><%= resource.name %> </b></h2>
+                                            <h2 class="item-name"><%= resource.name %></h2>
                                         </div>
 
                                         <div class="item-tag">
@@ -121,72 +122,74 @@
                                             <% } %> 
                                         </div>
 
-                                        <div class="item-description-body">
-                                            <p class="item-description-text"> <%= resource.description %> </p>
+                                        <div class="item-bio">
+                                            <p class="item-bio-text"> <%= resource.description %> </p>
                                         </div>
                                     </div>
 
-                                    <div class="modal-body-content item-description item-properties">
+                                    <div class="item-properties">
                                         <div class="item-description-title">
                                             <!-- <i class="fas fas-map-location-dot"></i> -->
-                                            <h4 class="item-description">Properties</h4>
+                                            <h4 class="item-description-title-label">Properties</h4>
                                         </div>
 
                                         <div class="item-description-body">
                                             <% for (let property of resource.properties) { %> 
-                                            <p class="item-properties-text"><b style="font-weight: 900; font-size: 18px;" ><%= property.title %> </b> <%= property.description %> </p>
+                                            <p class="item-properties-text"><b class="bold-title" ><%= property.title %> </b> <%= property.description %> </p>
                                             <% } %> 
                                         </div>
                                     </div>
 
-                                    <div class="modal-body-content item-description item-origin">
+                                    <div class="item-origin">
                                         <div class="item-description-title">
-                                            <h4 class="item-description">Origin and Occurence</h4>
+                                            <h4 class="item-description-title-label">Origin and Occurence</h4>
                                         </div>
 
                                         <div class="item-description-body">
-                                            <p class="item-origin-text"> <%= resource.origin_occ %> </p>
+                                            <p class="item-description-text"> <%= resource.origin_occ %> </p>
                                         </div>
                                         
                                     </div>
 
-                                    <div class="modal-body-content item-description item-applications">
+                                    <div class="item-applications">
                                         <div class="item-description-title">
                                             <!-- <i class="fa-solid fa-hammer"></i> -->
-                                            <h4 class="item-description">Application</h4>
+                                            <h4 class="item-description-title-label">Application</h4>
                                         </div>
 
                                         <div class="item-description-body">
                                             <% for (let application of resource.applications) { %> 
-                                            <p class="item-applications-text"><b style="font-weight: 900; font-size: 18px;" ><%= application.title %> </b> <%= application.description %> </p>
+                                            <p class="item-description-text"><b class="bold-title" ><%= application.title %> </b> <%= application.description %> </p>
                                             <% } %> 
                                         </div>
+                                        
+
                                     </div>
                                     
                                 </div>
                                 
-                                <div class="modal-footer">
-                                    <form action="/delete/<%= resource.id %>?_method=DELETE" method="POST">
-                                        <button type="submit" class="btn btn-danger btn-lg upload-btn">Delete Resource</button>
-                                    </form>
-
-                                    <form action="/edit/<%= resource.id %>">
-                                        <button type="submit" class="btn btn-warning btn-lg upload-btn">Edit Resource</button>
-                                    </form>
-                                    
-                                </div>
                             </div>
                         </div>
-                        
+                        <div class="modal-footer">
+                            <form action="/delete/<%= resource.id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger super-btn">Delete Resource</button>
+                            </form>
+
+                            <form action="/edit/<%= resource.id %>">
+                                <button type="submit" class="btn btn-warning super-btn">Edit Resource</button>
+                            </form>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
+            
             <% } %> 
             <% } %> 
         </section>
 
         <section class="upload">
-            <button type="button" class="btn btn-warning" onclick="window.location.href = '/edit-zone';" >Edit Zone</button>
+            <button type="button" class="btn btn-warning" onclick="window.location.href = '/edit-zone/<%=zone.id%>'" >Edit Zone</button>
             <button type="button" class="btn btn-warning" onclick="window.location.href = '/upload';" >Upload Resource</button>
         </section>
         
