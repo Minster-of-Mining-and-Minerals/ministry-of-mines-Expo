@@ -619,6 +619,37 @@ server.post('/edit/:id', upload.single('res_image'),async (req,res) => {
     return res.redirect('/super-north')
 })
 
+server.get('/add-zone', async(req,res)=>{
+    return res.render('add-zone')
+})
+
+server.post('/add-zone', async(req,res)=>{
+    console.log("Request body..")
+    console.dir(req.body)
+
+    // Extract zone data 
+    const zone_id = uuidv4();
+    const zone_name = req.body.zone_name.trim();
+    const zone_area = req.body.zone_area.trim();
+    const zone_status = req.body.zone_status.trim();
+    const zone_desc = req.body.zone_desc.trim()
+    //const zone_image = req.file;
+    
+    // Use data to insert new Resource into db
+    const zone = await Zone.query().findById(zone_id).insert({
+        id: zone_id,
+        Name: zone_name,
+        Area: zone_area,
+        Status: zone_status,
+        Description: zone_desc,
+    })
+    console.log("Zone added..")
+
+
+
+    return res.redirect('../')
+})
+
 server.get('/edit-zone/:id', async(req,res) => {
     const zone_id = req.params.id;
 
