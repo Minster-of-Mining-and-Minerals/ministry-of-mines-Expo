@@ -14,9 +14,9 @@ require("dotenv").config();
       connection: {
         host: 'localhost',
         port: 3306,
-        user: 'root',
-        password: 'P@ssw0rd',
-        database: 'mineral_explorer',
+        user: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
       },
       migrations: {
         tableName: "knex_migrations",
