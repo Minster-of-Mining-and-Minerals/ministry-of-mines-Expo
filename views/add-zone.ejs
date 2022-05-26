@@ -29,7 +29,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-gold" href="/super-north"><%= zone.Name %> </a></li>
+                <li class="breadcrumb-item"><a class="text-gold" href="/super-north">North Zone </a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Zone</li>
             </ol>
         </nav>
@@ -37,7 +37,7 @@
         <div class="content-upload-title">
             <h3 class="content-upload-title text-gold">Edit Zone</h3>
         </div>
-        <form class="content-upload-form" action="/edit-zone/<%= zone.id %> " method="POST">
+        <form class="content-upload-form" action="/add-zone" method="POST">
             <div class="form-group col-md-6 text-gold">
                 <label for="inputEmail4">Zone Name</label>
                 <input type="text" name="zone_name" class="form-control text-light bg-dark" placeholder="Zone Name">
