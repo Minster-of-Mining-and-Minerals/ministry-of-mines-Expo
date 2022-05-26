@@ -292,14 +292,14 @@ server.post('/upload', upload.single('res_image'),async (req,res) => {
     console.dir(req.body)
 
     // Extract resource data 
-    const res_name = req.body.res_name;
-    const res_type = req.body.res_type;
-    const res_desc = req.body.res_desc;
+    const res_name = req.body.res_name.trim();
+    const res_type = req.body.res_type.trim();
+    const res_desc = req.body.res_desc.trim();
     const res_image = req.file
     // const res_image_name = req.file.filename;
     const res_image_name = "";
     //const res_image_data = req.files.res_image.data;
-    const res_origin = req.body.res_origin;
+    const res_origin = req.body.res_origin.trim();
     const res_prop_title = req.body.res_prop_title;
     const res_prop_desc = req.body.res_prop_desc;
     const res_app_title = req.body.res_app_title;
@@ -443,14 +443,14 @@ server.post('/edit/:id', upload.single('res_image'),async (req,res) => {
     const res_id = req.params.id;
     console.log(res_id);
 
-    const res_name = req.body.res_name;
-    const res_type = req.body.res_type;
-    const res_desc = req.body.res_desc;
+    const res_name = req.body.res_name.trim();
+    const res_type = req.body.res_type.trim();
+    const res_desc = req.body.res_desc.trim();
     const res_image = req.file;
     const res_image_name = "";
     //const res_image_data = req.files.res_image.data;
-    const res_zone = req.body.zone;
-    const res_origin = req.body.res_origin;
+    const res_zone = req.body.zone.trim();
+    const res_origin = req.body.res_origin.trim();
     const res_prop_title = req.body.res_prop_title;
     const res_prop_desc = req.body.res_prop_desc;
     const res_app_title = req.body.res_app_title;
@@ -620,31 +620,43 @@ server.post('/edit/:id', upload.single('res_image'),async (req,res) => {
 })
 
 server.get('/edit-zone/:id', async(req,res) => {
-    const res_id = req.params.id;
+    const zone_id = req.params.id;
 
-    // Get zone of resource
-    const zone_res = await ZoneResource.query()
-        .select('zone_id')
-        .where('res_id', '=', res_id)
-        .first()
-        .withGraphFetched('zone')
+    // Get zone info
+    const zone = await Zone.query()
+        .select()
+        .where('id', '=', zone_id)
+        .first();
 
-    console.dir(zone_res)
-
-    const zone = zone_res.zone;
-
-    console.dir(zone)
-    // Get resource info
-    const resource = await Resource.query()
-        .select('id', 'name', 'type', 'img_path', 'description', 'origin_occ')
-        .where('id', '=', res_id)
-        .first()
-        .withGraphFetched('[properties, applications]')
-
-
-    console.dir(resource)
     // Render page with data
-    return res.render('edit', {zone, resource})
+    return res.render('edit-zone', {zone})
+})
+
+server.post('/edit-zone/:id', async(req,res) => {
+    console.log("Request body..")
+    console.dir(req.body)
+
+    // Extract zone data 
+    const zone_id = req.params.id;
+
+    const zone_name = req.body.zone_name.trim();
+    const zone_area = req.body.zone_area.trim();
+    const zone_status = req.body.zone_status.trim();
+    const zone_desc = req.body.zone_desc.trim()
+    //const zone_image = req.file;
+    
+    // Use data to insert new Resource into db
+    const zone = await Zone.query().findById(zone_id).patch({
+        Name: zone_name,
+        Area: zone_area,
+        Status: zone_status,
+        Description: zone_desc,
+    })
+    console.log("Resource updated..")
+
+
+
+    return res.redirect('../super-north')
 })
 
 
