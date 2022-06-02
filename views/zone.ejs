@@ -12,15 +12,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/font-awesome.all.min.css">
     <script src="https://kit.fontawesome.com/e807667acd.js" crossorigin="anonymous"></script>
     <link href='stylesheets/style.css' rel='stylesheet' />
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
 </head>
 
 <body>
     <header>
-        <nav id="navbar">
-            <a href="/" data-toggle="" data-target="#exampleModal">
-                <img src="images/logo.png" alt="" class="child-img">
-            </a>
+        <!-- <nav id="navbar">
+            <div class="dropdown show">
+                <a class="dropdown-toggle text-gold" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="images/logo.png" alt="" class="logo-img">
+                </a>
+    
+                <div class="dropdown-menu text-gold" aria-labelledby="dropdownMenuLink">
+                    <a href="#" class="dropdown-item">Login</a>
+                </div>
+                    <img class="logo" src="images/logo.png" alt="logo"> -->
+            <!-- </div>
+          </nav> --> 
+          <nav id="navbar">
+            <img src="images/logo.png" alt="" class="logo-img">
+            
             <!-- <img class="logo" src="images/logo.png" alt="logo"> -->
             
           </nav>
@@ -28,12 +38,15 @@
 
     <main>
         <section class="upper">
-            <img src="<%= zone_img_path %> " alt="" class="map">
+            <div class="map">
+                <img src="<%= zone_img_path %> " alt="" class="map-img">
+            </div>
+            
             <div class="region-info">
                 <h2 class="region-title"><b><%= zone.Name %></b></h2>
                 <div class="region-area">
                     <h6 class="region-area-label"> <b>Area:</b> </h6>
-                    <h6 class="region-area-value"> <%= zone.Area %> </h6>
+                    <h6 class="region-area-value"> <%= zone.Area %> km<sup>2</sup></h6>
                 </div>
                 <div class="region-status">
                     <h6 class="region-status-label"> <b>Status:</b> </h6>
