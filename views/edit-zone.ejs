@@ -29,7 +29,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-gold" href="/super-north"><%= zone.Name %> </a></li>
+                <li class="breadcrumb-item"><a class="text-gold" href="<%= return_to %>"><%= zone.Name %></a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Zone</li>
             </ol>
         </nav>
@@ -38,16 +38,16 @@
             <h3 class="content-upload-title text-gold">Edit Zone</h3>
         </div>
         <form class="content-upload-form" action="/edit-zone/<%= zone.id %> " method="POST">
-            <div class="form-group col-md-6 text-gold">
+            <div class="form-group col-md-4 text-gold">
                 <label for="inputEmail4">Zone Name</label>
-                <input type="text" name="zone_name" class="form-control text-light bg-dark" value="<%= zone.Name %> " placeholder="Zone Name">
+                <input type="text" name="zone_name" class="form-control text-light bg-dark" value="<%= zone.Name %> " placeholder="Zone Name" disabled>
               </div>
             <div class="form-row resource-bio">
-              <div class="form-group col-md-6 text-gold">
-                <label for="inputEmail4">Area</label>
+              <div class="form-group col-md-4 text-gold">
+                <label for="inputEmail4">Area (in km<sup>2</sup>)</label>
                 <input type="text" name="zone_area" class="form-control text-light bg-dark" value="<%= zone.Area %> " placeholder="Zone Area">
               </div>
-              <div class="form-group col-md-4 text-gold">
+              <div class="form-group col-md-6 text-gold">
                 <label for="inputPassword4">Status</label>
                 <input type="text" name="zone_status" class="form-control text-light bg-dark title-input" value="<%= zone.Status %> " placeholder="Zone Status">
               </div>

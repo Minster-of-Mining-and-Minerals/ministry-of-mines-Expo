@@ -29,7 +29,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-gold" href="/super-north"><%= zone.Name %> </a></li>
+                <li class="breadcrumb-item"><a class="text-gold" href="<%= return_to %>"><%= zone.Name %> </a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Resource</li>
             </ol>
         </nav>
@@ -111,7 +111,7 @@
                     <% for (let application of resource.applications) { %>  
                 <div class="form-column added-application">
                     <div class="form-group row-md-4 text-gold"">
-                      <input type="text" name="res_app_title" class="form-control text-light bg-dark title-input" value="<%= application.title %> " placeholder="Application Title">
+                      <input type="text" name="res_app_title" class="form-control text-light bg-dark title-input" value="<%= application.title %>" placeholder="Application Title">
                     </div>
                     <div class="form-group row-md-4 text-gold"">
                       <textarea name="res_app_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Application Description"><%= application.description %> </textarea>

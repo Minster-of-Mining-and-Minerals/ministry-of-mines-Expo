@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/font-awesome.all.min.css">
     <script src="https://kit.fontawesome.com/e807667acd.js" crossorigin="anonymous"></script>
     <link href='stylesheets/style.css' rel='stylesheet' />
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
 </head>
 
 <body>
@@ -30,7 +29,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
-            <li class="breadcrumb-item"><a class="text-gold" href="/super-north">Northern Zone</a></li>
+            <li class="breadcrumb-item"><a class="text-gold" href="<%= return_to %> "><%= zone_name %> </a></li>
             <li class="breadcrumb-item active" aria-current="page">Upload Resource</li>
         </ol>
       </nav>
@@ -41,7 +40,13 @@
             <div class="form-group col-md-4 text-gold resource-zone"">
                 <label for="inputState">Zone</label>
                 <select id="inputState" name="zone" class="form-control text-light bg-dark" required>
-                  <option selected>Choose...</option>
+                  <option selected>
+                    <% if (zone_name) { %> 
+                      <%= zone_name %>
+                    <% }else{ %> 
+                      Choose... 
+                    <% } %> 
+                  </option>
                   <option>Northern Zone</option>
                   <option>North-Eastern Zone</option>
                   <option>Eastern Zone</option>
@@ -118,17 +123,9 @@
                 <input class="form-control text-light bg-dark" name="res_image" type="file" id="formFile">
               </div>
                                
-            <div class="form-group text-gold">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck">
-                  <label class="form-check-label" for="gridCheck">
-                    I agree to the Terms of Service
-                  </label>
-                </div>
-            </div>
   
             <div class="upload-btn-container">
-                <button type="submit" class="btn btn-primary btn-lg upload-btn">Upload</button>
+                <button type="submit" class="btn btn-warning btn-lg upload-btn">Upload</button>
             </div>
             
         </form>
