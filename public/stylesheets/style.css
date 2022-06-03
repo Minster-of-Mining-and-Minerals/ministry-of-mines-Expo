@@ -52,7 +52,7 @@
     overflow-y: auto;    
     overflow-x: auto;
     width: auto;
-    min-width: 400px;   
+    min-width: 40%;   
     max-width: 60%;
     /* margin: auto; */
 }
@@ -419,7 +419,7 @@ img.map-img {
 }
 
 .arrow-btn:hover{
-    color: red;
+    color: #CAA856;
 }
 
 .cover {
@@ -482,6 +482,13 @@ img.map-img {
     height: 90%;
 
 }
+
+.child-img-link:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
 .logo-img {
     margin-left: 3px;
     margin-right: 3px;   
@@ -748,4 +755,16 @@ img.map-img {
 .breadcrumb a {
     text-decoration: none;
 
+}
+
+.breadcrumb a:hover {
+    color: #CAA856;
+}
+
+.no-select{
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
 }

@@ -6,14 +6,17 @@ html{
 	height: 100%;
 }
 .prompt {
-	min-width: 30%;
-	max-width: 40%;
-	margin: 50px auto;
+	min-width: 25%;
+	max-width: 35%;
+	margin: 10% auto;
 	padding: 25px;
 	background: rgb(0, 21, 36);
 	border: 1px solid rgba(2, 48, 71, 0.7);
 	border-radius: 8px;
 	color: gold;
+	min-height: 45%;
+	height: max-content;
+
 }
 
 #navbar {
@@ -66,6 +69,7 @@ button {
 	font-weight: 700;
 	color: black;
 	cursor: pointer;
+	margin-top: 10%;
 }
 
 a.button {

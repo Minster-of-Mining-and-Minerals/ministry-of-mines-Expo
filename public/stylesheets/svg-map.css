@@ -64,7 +64,14 @@ svg {
     color: gold;
     padding: 0;
     height: 15vh;
-    
+}
+
+.no-select{
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
 }
 
 .prompt-text{
