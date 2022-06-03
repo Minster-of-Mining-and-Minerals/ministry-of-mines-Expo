@@ -24,7 +24,7 @@ const options = {
     // createDatabaseTable: true
 }
 const sessionStore = new mysqlStore(options);
-const TWO_HOURS = 1000 * 60 * 60 * 2
+const TWO_HOURS = 1000 * 60 * 60 * 24;
 
 
 // Routers
