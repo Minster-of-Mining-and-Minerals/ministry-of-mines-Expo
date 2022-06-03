@@ -9,6 +9,7 @@
     "migrate": "npx knex --knexfile=./db/knexfile.js migrate:latest",
     "migrate:rollback": "npx knex --knexfile=./db/knexfile.js migrate:rollback",
     "migrate:make": "npx knex --knexfile=./db/knexfile.js migrate:make",
+    "seed:run": "npx knex --knexfile=./db/knexfile.js seed:run",
     "seed:make": "npx knex --knexfile=./db/knexfile.js seed:make"
   },
   "repository": {
