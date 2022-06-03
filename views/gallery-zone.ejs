@@ -29,7 +29,7 @@
                     <img class="logo" src="images/logo.png" alt="logo"> -->
             <!-- </div>
           </nav> --> 
-          <nav id="navbar">
+          <nav id="navbar" class="no-select" unselectable="on" onselect="return false;" onmousedown="return false;">
             <img src="images/logo.png" alt="" class="logo-img">
             
             <!-- <img class="logo" src="images/logo.png" alt="logo"> -->
@@ -45,7 +45,7 @@
 
             </ol>
           </nav>
-        <section class="upper-controller">
+        <section class="upper-controller" class="no-select" unselectable="on" onselect="return false;" onmousedown="return false;">
             <div class="map">
                 <img src="<%= zone_img_path %> " alt="" class="map-img">
             </div>
@@ -54,7 +54,7 @@
                 <h2 class="region-title"><b><%= zone.Name %></b></h2>
                 <div class="region-area">
                     <h6 class="region-area-label"> <b>Area:</b> </h6>
-                    <h6 class="region-area-value"> <%= zone.Area %> </h6>
+                    <h6 class="region-area-value"> <%= zone.Area %> km<sup>2</sup></h6>
                 </div>
                 <div class="region-status">
                     <h6 class="region-status-label"> <b>Status:</b> </h6>
@@ -64,7 +64,7 @@
             </div>
         </section>
 
-        <section class="lower">
+        <section class="lower no-select" unselectable="on" onselect="return false;" onmousedown="return false;">
             <div class="main-scroll-div">
                 <button class="arrow-btn" onclick="scroll_left()">
                     <i class="fa-solid fa-arrow-left-long"></i>
@@ -105,7 +105,7 @@
             <% if (resources.length > 0) { %> 
             <% for (let resource of resources) { %> 
             <!-- Resource Modal -->
-            <div class="modal fade" id="res-<%= resource.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal fade no-select" unselectable="on" onselect="return false;" onmousedown="return false;" id="res-<%= resource.id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
