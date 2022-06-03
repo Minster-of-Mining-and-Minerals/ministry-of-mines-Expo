@@ -66,7 +66,6 @@ router.post('/upload', upload.single('res_image'),async (req,res) => {
         id: res_id,
         name: res_name,
         type: res_type,
-        img_name: res_image_name,
         img_path: req.file.path,
         description: res_desc,
         origin_occ: res_origin
@@ -222,7 +221,6 @@ router.post('/edit/:id', isLoggedIn, upload.single('res_image'),async (req,res) 
         .patch({
             name: res_name,
             type: res_type,
-            img_name: res_image_name,
             img_path: filepath,
             description: res_desc,
             origin_occ: res_origin
