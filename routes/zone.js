@@ -117,7 +117,7 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-controller-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources})
         } else if(display_role.role === "North") {
             return res.render('zone', {zone, zone_img_path,  resources})
         }
@@ -161,7 +161,7 @@ router.get('/north-east', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-controller-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources})
         } else if(display_role.role === "North-East") {
             return res.render('zone', {zone, zone_img_path,  resources})
         }
@@ -205,7 +205,7 @@ router.get('/west', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-controller-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources})
         } else if(display_role.role === "West") {
             return res.render('zone', {zone, zone_img_path,  resources})
         }
@@ -249,7 +249,7 @@ router.get('/east', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-controller-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources})
         } else if(display_role.role === "East") {
             return res.render('zone', {zone, zone_img_path,  resources})
         }
@@ -293,7 +293,7 @@ router.get('/south', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-controller-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources})
         } else if(display_role.role === "South") {
             return res.render('zone', {zone, zone_img_path,  resources})
         }
