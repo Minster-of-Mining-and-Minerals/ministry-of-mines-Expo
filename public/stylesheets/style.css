@@ -620,7 +620,7 @@ img.map-img {
 
 .upload {
     display: flex;
-    width: auto;
+    width: 40%;
     max-width: 55%;
     /* flex-direction: row; */
     align-items: center;
