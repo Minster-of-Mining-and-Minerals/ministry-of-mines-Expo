@@ -197,14 +197,16 @@
 
         <% if (user_type) { %> 
         <section class="upload">
-            <% if (user_type === "Admin") { %>
-                <button type="button" class="btn btn-warning" onclick="window.location.href = '/register/gallery-user';" >Add Gallery User</button>
-            <% } %>     
-            <button type="button" class="btn btn-warning" onclick="window.location.href = '/edit-zone/<%=zone.id%>'" >Edit Zone</button>
-            <button type="button" class="btn btn-warning" onclick="window.location.href = '/upload';" >Add Resource</button>
-            <form action="/logout" method="post">
-                <button type="submit" class="btn btn-outline-danger super-btn">Log Out</button>
-            </form>
+            <div class="upload-btn-container">
+                <% if (user_type === "Admin") { %>
+                    <button type="button" class="btn btn-warning" onclick="window.location.href = '/register/gallery-user';" >Add Gallery User</button>
+                <% } %>     
+                <button type="button" class="btn btn-warning" onclick="window.location.href = '/edit-zone/<%=zone.id%>'" >Edit Zone</button>
+                <button type="button" class="btn btn-warning" onclick="window.location.href = '/upload';" >Add Resource</button>
+                <form action="/logout" method="post">
+                    <button type="submit" class="btn btn-outline-danger super-btn">Log Out</button>
+                </form>
+            </div>
         </section>
         <% } %> 
         
