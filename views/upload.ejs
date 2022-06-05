@@ -57,11 +57,11 @@
             <div class="form-row resource-bio">
               <div class="form-group col-md-6 text-gold">
                 <label for="inputEmail4">Resource Name</label>
-                <input type="text" name="res_name" class="form-control text-light bg-dark" placeholder="Name">
+                <input type="text" name="res_name" class="form-control text-light bg-dark" placeholder="Name" required>
               </div>
               <div class="form-group col-md-4 text-gold">
                 <label for="inputPassword4">Resource Type</label>
-                <select id="inputState" name="res_type" class="form-control text-light bg-dark">
+                <select id="inputState" name="res_type" class="form-control text-light bg-dark" required>
                     <option selected>Choose...</option>
                     <option>Metallic Mineral</option>
                     <option>Fertilizer Raw Material</option>
@@ -74,7 +74,7 @@
             </div>
             <div class="form-group resource-desc text-gold">
               <label for="inputDescription">Description</label>
-              <textarea rows="5" name="res_desc" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Resource"></textarea>
+              <textarea rows="5" name="res_desc" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Resource" required></textarea>
             </div>
             
             <div id="properties" class="form-column properties">
@@ -92,14 +92,14 @@
                 <div class="form-column added-property">
                     <div class="form-group row-md-4 text-gold"">
                       <input type="text" name="res_prop_title" class="form-control text-light bg-dark title-input" placeholder="Property Title">
-                      <textarea name="res_prop_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Property Description"></textarea>
+                      <textarea name="res_prop_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Property Description" required></textarea>
                     </div>
                 </div>
             </div>
             
             <div class="form-group text-gold">
                 <label for="inputDescription">Origin and Occurence</label>
-                <textarea rows="5" name="res_origin" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Origin and Occurence of Resource"></textarea>
+                <textarea rows="5" name="res_origin" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Origin and Occurence of Resource" required></textarea>
             </div>
 
             <div id="applications" class="form-column applications">
@@ -113,14 +113,14 @@
                       <input type="text" name="res_app_title" class="form-control text-light bg-dark title-input" placeholder="Application Title">
                     </div>
                     <div class="form-group row-md-4 text-gold"">
-                      <textarea name="res_app_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Application Description"></textarea>
+                      <textarea name="res_app_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Application Description" required></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="mb-3">
                 <label for="formFile" class="form-label text-gold">Image of Resource</label>
-                <input class="form-control text-light bg-dark" name="res_image" type="file" id="formFile">
+                <input class="form-control text-light bg-dark" name="res_image" type="file" id="formFile" required>
               </div>
                                
   
