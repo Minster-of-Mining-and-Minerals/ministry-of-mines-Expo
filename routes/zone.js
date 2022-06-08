@@ -85,7 +85,8 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
     const zone_name = "Northern Zone"
     console.log(zone_name)
 
-    const zone_img_path = 'images/zone-study-areas/north.png';
+    // const zone_img_path = 'images/zone-study-areas/north.png';
+    const zone_img_path = 'images/geo_maps/geo-north.png';
 
     // Check User
     // 1 - If admin, render super-north as admin
@@ -130,7 +131,8 @@ router.get('/north-east', isLoggedIn, async (req,res)=>{
     const zone_name = "North-Eastern Zone";
     console.log(zone_name)
 
-    const zone_img_path = 'images/zone-study-areas/north-east.png';
+    // const zone_img_path = 'images/zone-study-areas/north-east.png';
+    const zone_img_path = 'images/geo_maps/geo-north-east.png';
 
     // Check User
     // 1 - If admin, render super-north as admin
@@ -174,7 +176,8 @@ router.get('/west', isLoggedIn, async (req,res)=>{
     const zone_name = "Western Zone"
     console.log(zone_name)
 
-    const zone_img_path = 'images/zone-study-areas/west.png';
+    // const zone_img_path = 'images/zone-study-areas/west.png';
+    const zone_img_path = 'images/geo_maps/geo-west.png';
 
     // Check User
     // 1 - If admin, render super-north as admin
@@ -218,7 +221,8 @@ router.get('/east', isLoggedIn, async (req,res)=>{
     const zone_name = 'Eastern Zone';
     console.log(zone_name)
 
-    const zone_img_path = 'images/zone-study-areas/east.png';
+    // const zone_img_path = 'images/zone-study-areas/east.png';
+    const zone_img_path = 'images/geo_maps/geo-east.png';
 
     // Check User
     // 1 - If admin, render super-north as admin
@@ -262,7 +266,8 @@ router.get('/south', isLoggedIn, async (req,res)=>{
     const zone_name = "Southern Zone"
     console.log(zone_name)
 
-    const zone_img_path = 'images/zone-study-areas/south.png';
+    // const zone_img_path = 'images/zone-study-areas/south.png';
+    const zone_img_path = 'images/geo_maps/geo-south.png';
 
     // Check User
     // 1 - If admin, render super-north as admin
