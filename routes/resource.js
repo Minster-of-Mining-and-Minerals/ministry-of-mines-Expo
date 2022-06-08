@@ -383,4 +383,15 @@ router.post('/edit/:id', isLoggedIn, upload.single('res_image'),async (req,res) 
     return res.redirect(`..${return_to}`)
 })
 
+router.delete('/delete/:id', async(req,res) => {
+    const res_id = req.params.id;
+    console.log("req.session.returnTo:", req.session.returnTo);
+    const return_to = req.session.returnTo;
+
+    const removed_res = await Resource.query().deleteById(res_id);
+
+    // Redirect to the previous page
+    return res.redirect(`..${return_to}`)
+});
+
 module.exports = router;
