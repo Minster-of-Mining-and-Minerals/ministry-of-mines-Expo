@@ -18,20 +18,17 @@
         <header>
             <nav id="navbar">
                 <img src="images/logo.png" alt="" class="logo-img">
-                
                 <!-- <img class="logo" src="images/logo.png" alt="logo"> -->
-                
             </nav>
         </header>
-
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><%= zone.Name %></li>
+            </ol>
+        </nav>
+        
         <main>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><%= zone.Name %></li>
-
-                </ol>
-            </nav>
 
             <section class="upper-super">
                 <div class="map">

@@ -18,22 +18,22 @@
     <header>
         <nav id="navbar">
             <a href="/" data-toggle="" data-target="#exampleModal">
-                <img src="../images/logo.png" alt="" class="child-img">
+                <img src="/images/logo.png" alt="" class="child-img">
             </a>
             <!-- <img class="logo" src="images/logo.png" alt="logo"> -->
             
           </nav>
     </header>
 
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
+            <li class="breadcrumb-item"><a class="text-gold" href="<%= return_to %>"><%= zone.Name %></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Zone</li>
+        </ol>
+    </nav>
+    
     <main class="upload-page">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-gold" href="<%= return_to %>"><%= zone.Name %></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Zone</li>
-            </ol>
-        </nav>
-
         <div class="content-upload-title">
             <h3 class="content-upload-title text-gold">Edit Zone</h3>
         </div>
