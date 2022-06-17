@@ -4,10 +4,10 @@
     padding: 0;
 }
 
-/* html{
+html{
     width: 100%;
     height: 100%;
-} */
+}
 
 #navbar {
     width: 100%;
@@ -61,6 +61,8 @@
     background-color: black;
     border: 1px solid gold;
     border-radius: 20px;
+    /* margin-top: auto;
+    margin-bottom: auto; */
 }
 
 .item-pic{
@@ -86,9 +88,9 @@
 .modal,
 .fade,
 .show {
-    /* background-color: orange; */
+    background-color: orange;
     
-    height: 100vh;
+    height: 90%;
 }
 
 
@@ -306,12 +308,11 @@ main{
 }
 
 img.map-img {
-    width: 100%;
+    width: auto;
     max-width: 100%;
     height: auto;
     max-height: 100%;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
 }
 
 .region-info {
@@ -359,6 +360,12 @@ img.map-img {
     font-size: 5vh;
     height: 5vh;
     color: gold;
+}
+
+.region-title-container {
+    display: flex;
+    justify-content:start;
+    align-items: center;
 }
 
 .region-bio {
@@ -518,13 +525,26 @@ img.map-img {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
+    height: 80%;
 }
 
-.upload-page main{
+main.upload-page{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100%;
+    overflow: auto;
+    padding: 10px;
+    height: 70vh;
+    max-height: 70vh;
 
+
+}
+
+.upload-page-header {
+    display: flex;
+    padding: 2px;
+    flex-direction: row;
 }
 
 .text-gold{
@@ -701,6 +721,43 @@ img.map-img {
     margin: 0;
 }
 
+.user-tag {
+    /* background-color: #dc562e; */
+    /* height: 100%; */
+    /* width: fit-content; */
+    font-size: 3vh;
+    padding: 0.2vh 2vh;
+    display: inline-block;
+    border-radius: 40px;
+    text-align: center;
+    justify-content: center;
+    margin-left: 1vh;
+    margin-bottom: 0;
+}
+
+.staff-user {
+    border: 1px solid #CCD5AE;
+    color: #CCD5AE;  
+}
+.staff-user:hover {
+    border: 1px solid #CCD5AE;
+    background-color: #CCD5AE;
+    color: black;
+    cursor: pointer;
+}
+
+.admin-user {
+    border: 1px solid #CE796B;
+    color: #CE796B;  
+}
+.admin-user:hover {
+    border: 1px solid black;
+    background-color: #CE796B;
+    color: black;
+    /* cursor: pointer; */
+    cursor: grabbing;
+}
+
 .industrial-res {
     border: 1px solid #80ffdb;
     color: #80ffdb;
@@ -743,7 +800,7 @@ img.map-img {
 }
 
 .modal-content {
-    max-height: 95vh;
+    max-height: 90vh;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -813,3 +870,7 @@ img.map-img {
 /* ::-webkit-scrollbar-thumb:hover {
     background: purple; 
 } */
+
+span.badge.badge-warning {
+    height: 50%;
+}
