@@ -307,49 +307,6 @@ router.get('/south', isLoggedIn, async (req,res)=>{
     return res.redirect('/')
 });
 
-router.get('/insert-zones', async (req,res)=>{
-    const north = await Zone.query().insert({
-        id: uuidv4(),
-        Name: "Northern Zone",
-        Area: "328.5 km2",
-        Status: "Advanced Stage Exploration",
-        Description: "Located in north Ethiopia, the Northern Zone is home to low grade Volcano-Sedimentary rocks, high grade Gneisses and Intrusives. This zone is particulary known for its rich deposits of Gold and Base Metals such as Copper, Coal, Marble, Granite and Iron"
-    })
-
-    const north_east = await Zone.query().insert({
-        id: uuidv4(),
-        Name: "North-Eastern Zone",
-        Area: "328.5 km2",
-        Status: "Advanced Stage Exploration",
-        Description: "Located in north-eastern Ethiopia, the North-East Zone is home to low grade Volcano-Sedimentary rocks, high grade Gneisses and Intrusives. This zone is particulary known for its rich deposits of Gold and Base Metals such as Copper, Coal, Marble, Granite and Iron"
-    })
-
-    const east = await Zone.query().insert({
-        id: uuidv4(),
-        Name: "Eastern Zone",
-        Area: "328.5 km2",
-        Status: "Advanced Stage Exploration",
-        Description: "Located in eastern Ethiopia, the Eastern Zone is home to low grade Volcano-Sedimentary rocks, high grade Gneisses and Intrusives. This zone is particulary known for its rich deposits of Gold and Base Metals such as Copper, Coal, Marble, Granite and Iron"
-    })
-
-    const west = await Zone.query().insert({
-        id: uuidv4(),
-        Name: "Western Zone",
-        Area: "328.5 km2",
-        Status: "Advanced Stage Exploration",
-        Description: "Located in western Ethiopia, the Western Zone is home to low grade Volcano-Sedimentary rocks, high grade Gneisses and Intrusives. This zone is particulary known for its rich deposits of Gold and Base Metals such as Copper, Coal, Marble, Granite and Iron"
-    })
-
-    const south = await Zone.query().insert({
-        id: uuidv4(),
-        Name: "Southern Zone",
-        Area: "328.5 km2",
-        Status: "Advanced Stage Exploration",
-        Description: "Located in southern Ethiopia, the Southern Zone is home to low grade Volcano-Sedimentary rocks, high grade Gneisses and Intrusives. This zone is particulary known for its rich deposits of Gold and Base Metals such as Copper, Coal, Marble, Granite and Iron"
-    })
-    res.end('ok');
-})
-
 router.get('/add-zone', async(req,res)=>{
     console.log("req.session.returnTo:", req.session.returnTo);
     return res.render('add-zone')
