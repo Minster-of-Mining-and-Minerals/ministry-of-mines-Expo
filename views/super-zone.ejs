@@ -27,7 +27,7 @@
                 <li class="breadcrumb-item active" aria-current="page"><%= zone.Name %></li>
             </ol>
         </nav>
-        
+
         <main>
 
             <section class="upper-super">
@@ -38,7 +38,11 @@
                     <% if (user_type) { %>
                         <div class="region-title-container">
                             <h2 class="region-title"><b><%= zone.Name %>  </b> </h2>
-                            <h6 class="user-tag staff-user"> <%= user_type %>  </h6>
+                            <% if (user_type === 'Admin') {%> 
+                            <h6 class="user-tag admin-user"> <%= user_type %>  </h6>
+                            <% } else if (user_type === 'Staff') {%>
+                            <h6 class="user-tag staff-user"> <%= user_type %>  </h6> 
+                            <% } %> 
                         </div>
                     <% } else { %>
                         <h2 class="region-title"><b><%= zone.Name %>  </b></h2>
