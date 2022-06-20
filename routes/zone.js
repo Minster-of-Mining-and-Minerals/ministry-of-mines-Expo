@@ -40,7 +40,7 @@ const get_res = async (zone_id) => {
 
         resources = await res;
     }
-    console.dir(resources)
+    // console.dir(resources)
     return resources;
 }
 
