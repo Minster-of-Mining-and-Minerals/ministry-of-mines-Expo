@@ -23,7 +23,7 @@ const get_res = async (zone_id) => {
         .select('id','res_id')
         .where('zone_id','=', zone_id);
 
-    console.dir(zone_res);
+    // console.dir(zone_res);
     
     let resources = [];
     
