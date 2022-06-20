@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Zone</title>
+    <title>Mineral Explorer</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.min.css"> -->
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/font-awesome.all.min.css">
     <script src="https://kit.fontawesome.com/e807667acd.js" crossorigin="anonymous"></script>
@@ -15,59 +16,59 @@
 </head>
 
 <body>
+
     <header>
         <nav id="navbar">
-            <a href="/" data-toggle="" data-target="#exampleModal">
-                <img src="../images/logo.png" alt="" class="child-img">
-            </a>
-            <!-- <img class="logo" src="images/logo.png" alt="logo"> -->
-            
-          </nav>
+            <a href="/">
+                <img src="/images/logo.png" alt="" class="logo-img">
+            </a>            
+        </nav>
     </header>
 
-    <main class="upload-page">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-gold" href="/north">North Zone </a></li>
-                <li class="breadcrumb-item active" aria-current="page">Add Gallery User</li>
-            </ol>
-        </nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
+            <li class="breadcrumb-item"><a class="text-gold" href="<%= return_to %> "><%= zone_name %> </a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Gallery User</li>
+        </ol>
+    </nav>
 
+    <main class="upload-page">
+        
         <div class="content-upload-title">
             <h3 class="content-upload-title text-gold">Add Gallery User</h3>
         </div>
-        <form class="content-upload-form" action="/register/gallery-user" method="POST">
+
+        <form class="content-upload-form-gallery" action="/register/gallery-user" method="POST">
             <div class="form-row">
-                <div class="form-group col-md-4 text-gold">
+                <div class="form-group col-md-5 text-gold">
                     <label for="inputEmail4">Username</label>
                     <input type="text" name="username" class="form-control text-light bg-dark" placeholder="Username">
                 </div>
 
+                <div class="form-group col-md-5 text-gold">
+                    <label for="inputEmail4">Role</label>
+                    <select id="inputState" name="role" class="form-control text-light bg-dark" required>
+                        <option selected>Choose...</option>
+                        <option>Northern Zone Viewer</option>
+                        <option>North-Eastern Zone Viewer</option>
+                        <option>Eastern Zone Viewer</option>
+                        <option>Western Zone Viewer</option>
+                        <option>Southern Zone Viewer</option>
+                        <option>Instructor</option>
+                      </select>
+                </div>
             </div>
             
-            <div class="form-row">
-              <div class="form-group col-md-4 text-gold">
+            <div class="form-row mg-2">
+              <div class="form-group col-md-5 text-gold space-evenly">
                 <label for="inputEmail4">Password</label>
                 <input type="password" name="password" class="form-control text-light bg-dark"  placeholder="Password">
               </div>
-              <div class="form-group col-md-4 text-gold">
+              <div class="form-group col-md-5 text-gold">
                 <label for="inputPassword4">Confirm Password</label>
                 <input type="password" name="c_password" class="form-control text-light bg-dark title-input"  placeholder="Confirm Password">
               </div>
-            </div>
-
-            <div class="form-group col-md-4 text-gold">
-                <label for="inputEmail4">Role</label>
-                <select id="inputState" name="role" class="form-control text-light bg-dark" required>
-                    <option selected>Choose...</option>
-                    <option>Northern Zone Viewer</option>
-                    <option>North-Eastern Zone Viewer</option>
-                    <option>Eastern Zone Viewer</option>
-                    <option>Western Zone Viewer</option>
-                    <option>Southern Zone Viewer</option>
-                    <option>Instructor</option>
-                  </select>
             </div>
             
                                
@@ -76,7 +77,6 @@
             </div>
             
         </form>
-        
           
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
