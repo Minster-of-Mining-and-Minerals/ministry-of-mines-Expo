@@ -66,7 +66,7 @@ router.post('/upload', upload.single('res_image'),async (req,res) => {
         id: res_id,
         name: res_name,
         type: res_type,
-        img_path: req.file.path,
+        img_path: res_image.path,
         description: res_desc,
         origin_occ: res_origin
     })
@@ -74,7 +74,6 @@ router.post('/upload', upload.single('res_image'),async (req,res) => {
     // console.dir(resource);
 
     
-
     // Fetch zone
     const zone = await Zone.query().select('id').where('Name', req.body.zone)
     // Insert resource into zone
