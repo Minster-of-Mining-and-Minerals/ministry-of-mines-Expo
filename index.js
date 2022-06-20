@@ -78,7 +78,7 @@ server.use(passport.session()); // persistent login sessions\
 server.use((req,res,next)=>{
     res.locals.currentUser = req.user;
     console.log("Current User:", req.user)
-    console.dir(req.session)
+    // console.dir(req.session)
     next();
 })
 // Routes
