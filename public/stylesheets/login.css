@@ -8,7 +8,7 @@ html{
 .prompt {
 	min-width: 25%;
 	max-width: 35%;
-	margin: 10% auto;
+	margin: 5vh auto;
 	padding: 25px;
 	background: rgb(0, 21, 36);
 	border: 1px solid rgba(2, 48, 71, 0.7);
@@ -22,7 +22,8 @@ html{
 #navbar {
     width: 100%;
     /* height: 200px; */
-    height: 10vh;
+    height: 7.5vh;
+	padding-top: 1.5vh;
     /* background-color: #1C1D20; */
     background-color: black;
 }
@@ -37,6 +38,12 @@ html{
 .logo-img img{
     height: 90%;
     margin: 0;
+}
+.logo-img {
+    margin-left: 3px;
+    margin-right: 3px;   
+    height: 100%;
+    padding: 2px;
 }
 
 .form-row{
@@ -91,7 +98,7 @@ a.google {
 }
 
 button:hover {
-	background-color: #28acd1;
+	background-color: #D4B15A;
 }
 
 h1 {
