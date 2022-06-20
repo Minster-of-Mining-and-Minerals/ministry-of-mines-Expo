@@ -96,7 +96,7 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    console.dir(zone)
+    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
@@ -142,7 +142,7 @@ router.get('/north-east', isLoggedIn, async (req,res)=>{
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    console.dir(zone)
+    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
@@ -187,7 +187,7 @@ router.get('/west', isLoggedIn, async (req,res)=>{
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    console.dir(zone)
+    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
@@ -232,7 +232,7 @@ router.get('/east', isLoggedIn, async (req,res)=>{
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    console.dir(zone)
+    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
@@ -277,7 +277,7 @@ router.get('/south', isLoggedIn, async (req,res)=>{
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    console.dir(zone)
+    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
