@@ -141,6 +141,13 @@ authRouter.post('/login', passport.authenticate('local', {
     return res.redirect(redirectURL)
 });
 
+authRouter.get('/logout', isLoggedIn,function(req, res, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/');
+    });
+});
+
 authRouter.post('/logout', isLoggedIn,function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
@@ -195,53 +202,24 @@ authRouter.post('/signup', async function(req, res, next) {
 });
 
 authRouter.get('/register/gallery-user', isLoggedIn, async function (req, res, next) {
-    return res.render('add-gallery-user')
+    const return_to = req.session.returnTo;
+    const zone_name = req.session.zoneName;
+
+    console.log("req.session.returnTo:", return_to);
+
+    return res.render('add-gallery-user',{return_to, zone_name})
 });
 
 authRouter.post('/register/gallery-user', isLoggedIn, async function (req, res, next) {
     const { username, role, password} = req.body;
 
     const created_user = await addUser(username, password);
-
     const gallery_user = await addGalleryUser(created_user, role);
-    console.log("req.originalUrl: ", req.originalUrl)
-    return res.redirect('../')
+
+    const redirectURL = req.session.returnTo || '/';
+    console.log("Redirect URL:", redirectURL)
+    return res.redirect(redirectURL)
 });
 
-authRouter.get('/insert-gallery-users', async function(req,res,next){
-    const north_user = await addUser('north','north');
-    const north_gallery_user = await addGalleryUser(north_user, 'North')
-
-    const north_east_user = await addUser('north-east','north-east');
-    const north_east_gallery_user = await addGalleryUser(north_east_user, 'North-East')
-
-    const east_user = await addUser('east','east');
-    const east_gallery_user = await addGalleryUser(east_user, 'East')
-
-    const west_user = await addUser('west','west');
-    const west_gallery_user = await addGalleryUser(west_user, 'West')
-
-    const south_user = await addUser('south','south');
-    const south_gallery_user = await addGalleryUser(south_user, 'South');
-
-    return res.end('ok');
-});
-
-authRouter.get('/insert-gallery-instructor',  async function(req,res,next){
-    const user = await addUser('instructor','instructor');
-    const north_gallery_user = await addGalleryUser(user, 'Instructor')
-
-    return res.end('ok');
-});
-
-authRouter.get('/insert-admin', async function(req, res, next) {
-    const user = await addUser('admin', 'admin');
-    const admin_user = await AdminUser.query().insert({
-        id: uuidv4(),
-        user_id: user.id
-    })
-
-    return res.end('ok');
-});
 
 module.exports = {authRouter, passport};
