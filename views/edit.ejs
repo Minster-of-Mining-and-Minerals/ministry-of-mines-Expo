@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/font-awesome.all.min.css">
     <script src="https://kit.fontawesome.com/e807667acd.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
     <link href='../stylesheets/style.css' rel='stylesheet' />
 </head>
 
@@ -55,7 +56,7 @@
                 <div class="form-row resource-bio">
                   <div class="form-group col-md-6 text-gold">
                     <label for="inputEmail4">Resource Name</label>
-                    <input type="text" name="res_name" class="form-control text-light bg-dark" value="<%= resource.name %> " placeholder="Name">
+                    <input type="text" name="res_name" class="form-control text-light bg-dark" value="<%= resource.name %> " placeholder="Name" required>
                   </div>
                   <div class="form-group col-md-4 text-gold">
                     <label for="inputPassword4">Resource Type</label>
@@ -72,7 +73,7 @@
                 </div>
                 <div class="form-group resource-desc text-gold">
                   <label for="inputDescription">Description</label>
-                  <textarea rows="5" name="res_desc" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Resource"><%= resource.description %> </textarea>
+                  <textarea rows="5" name="res_desc" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Resource" required><%= resource.description %> </textarea>
                 </div>
                 
                 <div id="properties" class="form-column properties">
@@ -91,8 +92,8 @@
                         <% for (let property of resource.properties) { %> 
                     <div class="form-column added-property">
                         <div class="form-group row-md-4 text-gold"">
-                          <input type="text" name="res_prop_title" class="form-control text-light bg-dark title-input" value="<%= property.title %> " placeholder="Property Title">
-                          <textarea name="res_prop_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Property Description"><%= property.description %> </textarea>
+                          <input type="text" name="res_prop_title" class="form-control text-light bg-dark title-input" value="<%= property.title %> " placeholder="Property Title" required>
+                          <textarea name="res_prop_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Property Description" required><%= property.description %> </textarea>
                         </div>
                     </div>
                         <% } %>
@@ -101,7 +102,7 @@
                 
                 <div class="form-group text-gold">
                     <label for="inputDescription">Origin and Occurence</label>
-                    <textarea rows="5" name="res_origin" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Origin and Occurence of Resource" ><%= resource.origin_occ %> </textarea>
+                    <textarea rows="5" name="res_origin" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Origin and Occurence of Resource" required><%= resource.origin_occ %> </textarea>
                 </div>
     
                 <div id="applications" class="form-column applications">
@@ -114,10 +115,10 @@
                         <% for (let application of resource.applications) { %>  
                     <div class="form-column added-application">
                         <div class="form-group row-md-4 text-gold"">
-                          <input type="text" name="res_app_title" class="form-control text-light bg-dark title-input" value="<%= application.title %>" placeholder="Application Title">
+                          <input type="text" name="res_app_title" class="form-control text-light bg-dark title-input" value="<%= application.title %>" placeholder="Application Title" required>
                         </div>
                         <div class="form-group row-md-4 text-gold"">
-                          <textarea name="res_app_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Application Description"><%= application.description %> </textarea>
+                          <textarea name="res_app_desc" class="form-control text-light bg-dark description-input" aria-label="With textarea" placeholder="Application Description" required><%= application.description %> </textarea>
                         </div>
                     </div>
                         <% } %>
@@ -129,11 +130,11 @@
                     <div class="edit-img-container">
                         <img class="edit-img" src="<%= resource.img_path %> " alt="">
                     </div>
-                    <input class="form-control text-light bg-dark" name="res_image" type="file" id="formFile">
+                    <input class="form-control text-light bg-dark" name="res_image" type="file" id="formFile" required>
                   </div>
                                    
                 <div class="upload-btn-container">
-                    <button type="submit" class="btn btn-warning btn-lg upload-btn">Edit</button>
+                    <button type="submit" class="btn btn-warning btn-lg upload-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Resource</button>
                 </div>
                 
             </form>

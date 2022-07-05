@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/font-awesome.all.min.css">
     <script src="https://kit.fontawesome.com/e807667acd.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
     <link href='../stylesheets/style.css' rel='stylesheet' />
 </head>
 
@@ -46,16 +47,16 @@
             <div class="form-row resource-bio">
               <div class="form-group col-md-4 text-gold">
                 <label for="inputEmail4">Area (in km<sup>2</sup>)</label>
-                <input type="text" name="zone_area" class="form-control text-light bg-dark" value="<%= zone.Area %> " placeholder="Zone Area">
+                <input type="text" name="zone_area" class="form-control text-light bg-dark" value="<%= zone.Area %> " placeholder="Zone Area" required>
               </div>
               <div class="form-group col-md-6 text-gold">
                 <label for="inputPassword4">Status</label>
-                <input type="text" name="zone_status" class="form-control text-light bg-dark title-input" value="<%= zone.Status %> " placeholder="Zone Status">
+                <input type="text" name="zone_status" class="form-control text-light bg-dark title-input" value="<%= zone.Status %> " placeholder="Zone Status" required>
               </div>
             </div>
             <div class="form-group resource-desc text-gold">
               <label for="inputDescription">Description</label>
-              <textarea rows="5" name="zone_desc" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Zone"><%= zone.Description %> </textarea>
+              <textarea rows="5" name="zone_desc" class="form-control text-light bg-dark" aria-label="With textarea" placeholder="Description of Zone" required><%= zone.Description %> </textarea>
             </div>
 
             <!-- <div class="mb-3">
@@ -67,7 +68,7 @@
             </div> -->
                                
             <div class="upload-btn-container">
-                <button type="submit" class="btn btn-warning btn-lg upload-btn">Edit</button>
+                <button type="submit" class="btn btn-warning btn-lg upload-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Zone</button>
             </div>
             
         </form>
