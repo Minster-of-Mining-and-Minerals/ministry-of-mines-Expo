@@ -12,6 +12,13 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/font-awesome.all.min.css">
     <script src="https://kit.fontawesome.com/e807667acd.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&family=KoHo:wght@500&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
     <link href='stylesheets/style.css' rel='stylesheet' />
     <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
 </head>
@@ -151,43 +158,53 @@
                                                 <p class="item-bio-text"> <%= resource.description %> </p>
                                             </div>
     
-                                            <div class="item-properties">
-                                                <div class="item-description-title">
-                                                    <!-- <i class="fas fas-map-location-dot"></i> -->
-                                                    <h4 class="item-description-title-label">Properties</h4>
+                                            <div class="accordion accordion-flush" id="itemAccordion">
+                                                <div class="accordion-item">
+                                                  <h2 class="accordion-header" id="headingOne">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                      Properties
+                                                    </button>
+                                                  </h2>
+                                                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#itemAccordion">
+                                                    <div class="accordion-body">
+                                                        <div class="item-description-body">
+                                                            <% for (let property of resource.properties) { %> 
+                                                            <p class="item-properties-text"><b class="bold-title" ><%= property.title %> </b> <%= property.description %> </p>
+                                                            <% } %> 
+                                                        </div>
+                                                    </div>
+                                                  </div>
                                                 </div>
-    
-                                                <div class="item-description-body">
-                                                    <% for (let property of resource.properties) { %> 
-                                                    <p class="item-properties-text"><b class="bold-title" ><%= property.title %> </b> <%= property.description %> </p>
-                                                    <% } %> 
+                                                <div class="accordion-item">
+                                                  <h2 class="accordion-header" id="headingTwo">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                      Origin and Occurence
+                                                    </button>
+                                                  </h2>
+                                                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#itemAccordion">
+                                                    <div class="accordion-body">
+                                                        <div class="item-description-body">
+                                                            <p class="item-description-text"> <%= resource.origin_occ %> </p>
+                                                        </div>
+                                                    </div>
+                                                  </div>
                                                 </div>
-                                            </div>
-    
-                                            <div class="item-origin">
-                                                <div class="item-description-title">
-                                                    <h4 class="item-description-title-label">Origin and Occurence</h4>
+                                                <div class="accordion-item">
+                                                  <h2 class="accordion-header" id="headingThree">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                      Applications
+                                                    </button>
+                                                  </h2>
+                                                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#itemAccordion">
+                                                    <div class="accordion-body">
+                                                        <div class="item-description-body">
+                                                            <% for (let application of resource.applications) { %> 
+                                                            <p class="item-description-text"><b class="bold-title" ><%= application.title %> </b> <%= application.description %> </p>
+                                                            <% } %> 
+                                                        </div>
+                                                    </div>
+                                                  </div>
                                                 </div>
-    
-                                                <div class="item-description-body">
-                                                    <p class="item-description-text"> <%= resource.origin_occ %> </p>
-                                                </div>
-                                                
-                                            </div>
-    
-                                            <div class="item-applications">
-                                                <div class="item-description-title">
-                                                    <!-- <i class="fa-solid fa-hammer"></i> -->
-                                                    <h4 class="item-description-title-label">Application</h4>
-                                                </div>
-    
-                                                <div class="item-description-body">
-                                                    <% for (let application of resource.applications) { %> 
-                                                    <p class="item-description-text"><b class="bold-title" ><%= application.title %> </b> <%= application.description %> </p>
-                                                    <% } %> 
-                                                </div>
-                                                
-    
                                             </div>
                                         </div>
                                     </div>
