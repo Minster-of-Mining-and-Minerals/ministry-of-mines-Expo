@@ -166,6 +166,7 @@ html{
     padding: auto;
     margin: auto;
     font-weight: bold;
+    font-family: 'Chakra Petch';
 }
 .item-name h2 {
     font-size: 20px;
@@ -188,6 +189,7 @@ html{
 .bold-title{
     font-weight: bold;
     font-size: larger;
+    color: gold;
 }
 .item-description {
     height: 75%;
@@ -197,15 +199,18 @@ html{
     height: 75%;
 }
 .item-description-text {
-    font-size: 1.5vh;
+    font-size: 1.8vmin;
     padding: 2px;
     margin-bottom: 2px;
 }
 .item-bio-text {
-    overflow: auto;
     font-size: 1.8vh;
     margin: 0;
     height: 95%;
+    font-family: 'Baloo Bhai 2', cursive;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .item-description-title{
     display: flex;
@@ -284,6 +289,15 @@ html{
 
 .btn-close button{
     color: gold;
+}
+
+.btn-warning:hover{
+    background-color: black;
+    color: gold;
+}
+
+button {
+    font-family: 'Chakra Petch';
 }
 
 body{
@@ -369,29 +383,40 @@ img.map-img {
 .region-status {
     display: flex;
     align-items: center;
-    justify-content: start;
-    padding: 10px;
-    height: 30px;
-    margin-left: 30px;
+    justify-content: baseline;
+    padding: 1vmin;
+    height: 4vmin;
+    margin-left: 1vmin;
+    font-size: 50vmin;
+    width: 60%;
 }
 
 .region-area-label,
 .region-area-value, 
 .region-status-label,
 .region-status-value {
-    margin-left: 5px;
+    margin-left: 5vmin;
+    top: auto;
+    left: auto;
 }
 
+.region-status-value {
+    
+    width: 60%;
+}
 .region-area-label,
 .region-status-label {
     /* color: #CEB23C; */
+    font-family: 'Titillium Web', cursive;
     color: gold;
+    width: fit-content;
 }
 
 .region-area-value,
 .region-status-value {
     /* color: #EEC65C; */
     color: #d6d6d6;
+    width: fit-content;
 }
 
 .region-title,
@@ -406,6 +431,7 @@ img.map-img {
     /* height: 5vh; */
     font-weight: bold;
     color: gold;
+    font-family: 'Chakra Petch';
 }
 
 .region-title-container {
@@ -437,6 +463,7 @@ img.map-img {
     /* color: #1e96fc; */
     color: gold;
     overflow: auto;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .lower {
@@ -483,7 +510,7 @@ img.map-img {
     font-size: 5vmin;
     outline: none;
     border: none;
-    padding: 0px 10px;
+    padding: 0px 1vmin;
     cursor: pointer;
 }
 
@@ -587,7 +614,8 @@ img.map-img {
 .child-img-name {
     margin-top: 3px;
     margin-bottom: 5px;
-    color: #d6d6d6;
+    /* color: #d6d6d6; */
+    font-size: 3vmin;
 }
 .form-row{
     display: flex;
@@ -715,6 +743,7 @@ main.upload-page{
     margin-right: auto;
     font-size: 48px;
     text-align: center;
+    font-family: 'Chakra Petch';
 }
 
 .form-group{
@@ -817,7 +846,7 @@ main.upload-page{
     z-index: 99;
     display: block;
     height: 2vh;
-    width: 98%;
+    width: 99%;
     margin: 0 0 -2vh;
     background: -webkit-linear-gradient(180deg, black, transparent);
     background: -moz-linear-gradient(180deg, black, transparent);;
@@ -841,7 +870,7 @@ main.upload-page{
 }
 .item-properties-text {
     height: 40%;
-    font-size: 1.5vh;
+    font-size: 1.8vmin;
     margin-bottom: 0.5vh;
     /* padding: 20px; */
 }
@@ -1091,6 +1120,7 @@ main.upload-page{
 .breadcrumb {
     margin-left: 20px;
     text-decoration: none;
+    font-family: 'Chakra Petch';
 }
 
 .breadcrumb a {
@@ -1137,3 +1167,41 @@ main.upload-page{
 span.badge.badge-warning {
     height: 50%;
 }
+
+#accordionFlushExample {
+    background-color: #48bfe3;
+}
+.accordion{
+    background-color: black;
+    
+    border: 0px solid black;
+}
+
+.accordion-body {
+    background: black;
+    color: gold;
+}
+
+.accordion-header {
+    background: black;
+}
+.accordion-button.collapsed{
+    background: black;
+    color: gold;
+    border:  0px solid gold;
+    padding: 1vmin 1vmax;
+    font-size: 1.5vmax;
+}
+
+.accordion-button.collapsed::after{
+    color: gold;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: gold;
+    color: black;
+    border:  0px solid gold;
+    padding: 1vmin 1vmax;
+    font-size: 1.5vmax;
+    font-weight: bold;
+  }
