@@ -24,7 +24,7 @@ const options = {
     // createDatabaseTable: true
 }
 const sessionStore = new mysqlStore(options);
-const TWO_HOURS = 1000 * 60 * 60 * 24 * 3;
+const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
 
 
 // Routers
@@ -48,6 +48,7 @@ server.use(express.static(path.join(__dirname, 'public')))
 // On every request:
 server.use(morgan('dev')); // Use request logger
 server.use((req,res,next)=>{
+    console.log("------------------- New Request -------------------")
     console.log(req.method, req.path);
     next();
 })
@@ -65,7 +66,7 @@ server.use(session({
     saveUninitialized: true,
     store: sessionStore,
     cookie: {
-        maxAge: TWO_HOURS,
+        maxAge: ONE_WEEK,
         sameSite: true,
         // secure: true
     }
