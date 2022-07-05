@@ -123,7 +123,7 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
             return res.render('zone', {zone, zone_img_path,  resources})
         }
     }
-
+    console.log("-----------------------------------------------");
     return res.redirect('/')
 });
 
@@ -168,7 +168,7 @@ router.get('/north-east', isLoggedIn, async (req,res)=>{
             return res.render('zone', {zone, zone_img_path,  resources})
         }
     }
-
+    console.log("-----------------------------------------------");
     return res.redirect('/')
 });
 
@@ -213,6 +213,7 @@ router.get('/west', isLoggedIn, async (req,res)=>{
             return res.render('zone', {zone, zone_img_path,  resources})
         }
     }
+    console.log("-----------------------------------------------");
 
     return res.redirect('/')
 });
@@ -258,7 +259,7 @@ router.get('/east', isLoggedIn, async (req,res)=>{
             return res.render('zone', {zone, zone_img_path,  resources})
         }
     }
-
+    console.log("-----------------------------------------------");
     return res.redirect('/')
 });
 
@@ -303,6 +304,7 @@ router.get('/south', isLoggedIn, async (req,res)=>{
             return res.render('zone', {zone, zone_img_path,  resources})
         }
     }
+    console.log("-----------------------------------------------");
 
     return res.redirect('/')
 });
@@ -335,7 +337,7 @@ router.post('/add-zone', async(req,res)=>{
         Description: zone_desc,
     })
     console.log("Zone added..")
-
+    
     return res.redirect('../')
 })
 

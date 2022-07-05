@@ -74,8 +74,6 @@ const addGalleryUser = async (user, role) => {
 
 }
 const validatePass = async (password, hash) => {
-    console.log("Password:", password);
-    console.log("Hash:", hash);
     const validPass = await bcrypt
         .compare(password, hash)
         .catch((err)=>{
@@ -131,12 +129,11 @@ authRouter.post('/login', passport.authenticate('local', {
     failureRedirect: '/login'
     // failureFlash: true
 }),  (req, res, next) => {
-    console.log("req.session.returnTo:",req.session.returnTo);
-    console.log("sup")
-    console.dir(req.session)
+    // console.log("req.session.returnTo:",req.session.returnTo);
+    // console.dir(req.session)
 
     const redirectURL = req.session.returnTo || '/';
-    console.log("Redirect URL:", redirectURL)
+    // console.log("Redirect URL:", redirectURL)
     delete req.session.returnTo;
     return res.redirect(redirectURL)
 });
@@ -206,18 +203,19 @@ authRouter.get('/register/gallery-user', isLoggedIn, async function (req, res, n
     const zone_name = req.session.zoneName;
 
     console.log("req.session.returnTo:", return_to);
-
+    console.log("-----------------------------------------------");
     return res.render('add-gallery-user',{return_to, zone_name})
 });
 
 authRouter.post('/register/gallery-user', isLoggedIn, async function (req, res, next) {
     const { username, role, password} = req.body;
-
+    console.dir(req.body)
     const created_user = await addUser(username, password);
     const gallery_user = await addGalleryUser(created_user, role);
 
     const redirectURL = req.session.returnTo || '/';
-    console.log("Redirect URL:", redirectURL)
+    console.log("Redirect URL:", redirectURL);
+    console.log("-----------------------------------------------");
     return res.redirect(redirectURL)
 });
 
