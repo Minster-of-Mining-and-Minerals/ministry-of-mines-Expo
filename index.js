@@ -31,6 +31,7 @@ const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
 const {authRouter} = require('./routes/auth');
 const zoneRouter = require('./routes/zone');
 const resourceRouter = require('./routes/resource');
+const indexRouter = require('./routes/index')
 
 // Setup database
 const dbSetup = require('./db/db-setup');
@@ -83,13 +84,10 @@ server.use((req,res,next)=>{
     next();
 })
 // Routes
+server.get('/', indexRouter);
 server.use('/', authRouter);
 server.use('/', zoneRouter);
 server.use('/', resourceRouter);
-
-server.get('/', async (req,res)=>{
-    return res.render('index')
-});
 
 server.use((req,res)=>{
     res.status(404).send("404");
