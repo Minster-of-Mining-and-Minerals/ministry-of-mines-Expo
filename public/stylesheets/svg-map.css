@@ -45,6 +45,23 @@ body {
     fill: #DBAF48;
 }
 
+#South,
+#West,
+#East,
+#North,
+#North-East
+{
+    /* Comment */
+}
+#South:hover,
+#West:hover,
+#East:hover,
+#North:hover,
+#North-East:hover
+{
+    fill: black;
+}
+
 .child-img {
     width: 400px;
     height: 400px;
@@ -112,14 +129,25 @@ body {
 
 svg {
     padding: 10px;
-    background-color: black;
+    /* background-color: black; */
+    background-size: cover;
+    background-position: center;
     height: auto;
     max-height: 100%;
     margin-top: auto;
     margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.map path {
+geo-map {
+    /* z-index: -1; */
+}
+
+zonal-map {
+    /* z-index: 99; */
+}
+/* .map path {
     stroke: black;
     stroke-width: 0.03px;
     transition: fill 0.3s;
@@ -127,9 +155,7 @@ svg {
 }
 
 path:hover {
-    /* fill: #a70b0b; */
-    /* fill: #003566; */
-    /* fill: #ff9c00; */
+    
     fill: gold;
-}
-
+} 
+ */
