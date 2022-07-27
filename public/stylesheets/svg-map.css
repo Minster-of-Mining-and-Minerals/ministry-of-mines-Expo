@@ -35,15 +35,11 @@ body {
     margin: auto;
 }
 
-#south-zone,
-#west-zone,
-#east-zone,
-#center-zone,
-#north-zone,
-#north-east-zone,
-#Center {
-    fill: #DBAF48;
+#Zonal-Borders {
+    display: inline;
+    
 }
+
 
 #South,
 #West,
@@ -51,6 +47,7 @@ body {
 #North,
 #North-East
 {
+    pointer-events: all;
     /* Comment */
 }
 #South:hover,
@@ -140,13 +137,7 @@ svg {
     margin-right: auto;
 }
 
-geo-map {
-    /* z-index: -1; */
-}
 
-zonal-map {
-    /* z-index: 99; */
-}
 /* .map path {
     stroke: black;
     stroke-width: 0.03px;
