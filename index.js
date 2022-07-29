@@ -1,6 +1,7 @@
 const express = require("express");
 require('dotenv').config({path: './.env'});
 
+const compression = require('compression');
 const morgan = require('morgan');
 const ejsMate = require('ejs-mate');
 const path = require("path");
@@ -37,6 +38,8 @@ const indexRouter = require('./routes/index')
 const dbSetup = require('./db/db-setup');
 dbSetup();
 
+// Use compression to compress server responses
+server.use(compression());
 
 // Set EJS 
 server.engine('ejs', ejsMate);
@@ -44,7 +47,6 @@ server.set('view engine', 'ejs');
 server.set('views', path.join(__dirname, 'views'))
 
 server.use(express.static(path.join(__dirname, 'public')))
-
 
 // On every request:
 server.use(morgan('dev')); // Use request logger
