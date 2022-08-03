@@ -56,7 +56,6 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-gold" href="/">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><%= zone.Name %></li>
-
             </ol>
           </nav>
         <section class="upper-controller no-select" unselectable="on" >
@@ -71,8 +70,26 @@
                     <h6 class="region-area-value"> <%= zone.Area %> km<sup>2</sup></h6>
                 </div>
                 <div class="region-status">
-                    <h6 class="region-status-label"> <b>Status:</b> </h6>
-                    <h6 class="region-status-value"> <i><%= zone.Status %></i> </h6>
+                    <h6 class="region-status-label"> <b>Common Resource Types:</b> </h6>
+                    <% if (common_res_types) { %>
+                        <% for (let common_res of common_res_types) { %>
+                            <% if (common_res.type === 'Metallic Mineral') { %>
+                                <h6 class="res-tag metallic-res"> <%= common_res.type %>  </h6>
+                            <% } else if (common_res.type === 'Fertilizer Raw Material') { %> 
+                                <h6 class="res-tag fertilizer-res"><%= common_res.type %></h6>
+                            <% } else if (common_res.type === 'Energy Mineral') { %> 
+                                <h6 class="res-tag energy-res"><%= common_res.type %></h6>
+                            <% } else if (common_res.type === 'Industrial Mineral') { %> 
+                                <h6 class="res-tag industrial-res"><%= common_res.type %></h6>
+                            <% } else if (common_res.type === 'Construction Material') { %> 
+                                <h6 class="res-tag construction-res"><%= common_res.type %></h6>
+                            <% } else if (common_res.type === 'Gemstone') { %> 
+                                <h6 class="res-tag gemstone-res"><%= common_res.type %></h6>
+                            <% } else { %> 
+                                <h6 class="res-tag industrial-res"><%= common_res.type %></h6>
+                            <% } %> 
+                        <% } %> 
+                    <% } %> 
                 </div>
                 <p class="region-bio"> <%= zone.Description %> </p>
             </div>

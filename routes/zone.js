@@ -81,6 +81,23 @@ const get_user_type = async (user_id) => {
     
 }
 
+const get_common_res_type = async (zone_id) => {
+    const knex = ZoneResource.knex();
+
+    function count(colName) {
+        return knex.raw('count(??)', [colName]);
+    }
+
+    const commonResources = await ZoneResource.query()
+        .select('resources.type')
+        .join('resources','res_id', 'resources.id')
+        .where('zone_id', zone_id)
+        .groupBy('resources.type')
+        .orderBy(count('resources.type'), 'DESC')
+        .limit(5);
+    
+    return commonResources;
+}
 router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
     const zone_name = "Northern Zone"
     console.log(zone_name)
@@ -102,13 +119,16 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
+    // Get common resources
+    const common_res_types = await get_common_res_type(zone.id)
+
     // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
     console.log("req.session.zoneName: ",req.session.zoneName)
 
     if (user_type === "Admin" || user_type === "Staff"){
-        return res.render('super-zone', {user_type, zone, zone_img_path, resources})
+        return res.render('super-zone', {user_type, zone, zone_img_path, resources, common_res_types})
     }
 
     if (user_type === "Gallery") {
@@ -118,9 +138,9 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "North") {
-            return res.render('zone', {zone, zone_img_path,  resources})
+            return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
     console.log("-----------------------------------------------");
@@ -142,18 +162,19 @@ router.get('/north-east', isLoggedIn, async (req,res)=>{
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
-    console.log('Resources length:',resources.length)
+
+    // Get common resources
+    const common_res_types = await get_common_res_type(zone.id)
 
     // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
     if (user_type === "Admin" || user_type === "Staff"){
-        return res.render('super-zone', {user_type, zone, zone_img_path, resources})
+        return res.render('super-zone', {user_type, zone, zone_img_path, resources, common_res_types})
     }
 
     if (user_type === "Gallery") {
@@ -163,9 +184,9 @@ router.get('/north-east', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "North-East") {
-            return res.render('zone', {zone, zone_img_path,  resources})
+            return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
     console.log("-----------------------------------------------");
@@ -193,12 +214,15 @@ router.get('/west', isLoggedIn, async (req,res)=>{
     const resources = await get_res(zone.id);
     console.log('Resources length:',resources.length)
 
+    // Get common resources
+    const common_res_types = await get_common_res_type(zone.id)
+
     // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
     if (user_type === "Admin" || user_type === "Staff"){
-        return res.render('super-zone', {user_type, zone, zone_img_path, resources})
+        return res.render('super-zone', {user_type, zone, zone_img_path, resources, common_res_types})
     }
 
     if (user_type === "Gallery") {
@@ -208,9 +232,9 @@ router.get('/west', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "West") {
-            return res.render('zone', {zone, zone_img_path,  resources})
+            return res.render('zone', {zone, zone_img_path, resources,common_res_types})
         }
     }
     console.log("-----------------------------------------------");
@@ -233,18 +257,19 @@ router.get('/east', isLoggedIn, async (req,res)=>{
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
-    console.log('Resources length:',resources.length)
+    
+    // Get common resources
+    const common_res_types = await get_common_res_type(zone.id)
 
     // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
     if (user_type === "Admin" || user_type === "Staff"){
-        return res.render('super-zone', {user_type, zone, zone_img_path, resources})
+        return res.render('super-zone', {user_type, zone, zone_img_path, resources, common_res_types})
     }
 
     if (user_type === "Gallery") {
@@ -254,9 +279,9 @@ router.get('/east', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "East") {
-            return res.render('zone', {zone, zone_img_path,  resources})
+            return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
     console.log("-----------------------------------------------");
@@ -282,14 +307,16 @@ router.get('/south', isLoggedIn, async (req,res)=>{
     
     // Get resources data
     const resources = await get_res(zone.id);
-    console.log('Resources length:',resources.length)
+
+    // Get common resources
+    const common_res_types = await get_common_res_type(zone.id);
 
     // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
     if (user_type === "Admin" || user_type === "Staff"){
-        return res.render('super-zone', {user_type, zone, zone_img_path, resources})
+        return res.render('super-zone', {user_type, zone, zone_img_path, resources, common_res_types})
     }
 
     if (user_type === "Gallery") {
@@ -299,9 +326,9 @@ router.get('/south', isLoggedIn, async (req,res)=>{
         
         console.dir(display_role)
         if (display_role.role === "Instructor") {
-            return res.render('gallery-zone', {zone, zone_img_path,  resources})
+            return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "South") {
-            return res.render('zone', {zone, zone_img_path,  resources})
+            return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
     console.log("-----------------------------------------------");
