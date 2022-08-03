@@ -388,34 +388,39 @@ img.map-img {
     height: 4vmin;
     margin-left: 1vmin;
     font-size: 50vmin;
-    width: 60%;
+    width: 70vmax;
 }
 
 .region-area-label,
-.region-area-value, 
-.region-status-label,
-.region-status-value {
-    margin-left: 5vmin;
+.region-status-label{
+    margin-left: 2vmin;
+    margin-right: 2vmin;
+    margin-bottom: 0;
     top: auto;
     left: auto;
 }
 
+.region-area-value,
 .region-status-value {
-    
-    width: 60%;
+    /* margin-left: 5vmin; */
+    margin-right: 2vmin;
+    margin-bottom: 0;
+    top: auto;
+    left: auto;
 }
 .region-area-label,
 .region-status-label {
     /* color: #CEB23C; */
     font-family: 'Titillium Web', cursive;
-    color: gold;
-    width: fit-content;
+    color: #d6d6d6;
+    width: 23vmin;
+    text-align: end;
 }
 
 .region-area-value,
 .region-status-value {
     /* color: #EEC65C; */
-    color: #d6d6d6;
+    color: gold;
     width: fit-content;
 }
 
@@ -616,6 +621,7 @@ img.map-img {
     margin-bottom: 5px;
     /* color: #d6d6d6; */
     font-size: 3vmin;
+    font-family: 'Chakra Petch';
 }
 .form-row{
     display: flex;
@@ -972,13 +978,15 @@ main.upload-page{
     /* background-color: #dc562e; */
     /* height: 100%; */
     /* width: fit-content; */
-    font-size: 55%;
+    font-size: 0.8rem;
     padding: 0.1vh 0.5vh;
     display: inline-block;
     border-radius: 40px;
     text-align: center;
     justify-content: center;
     margin: 0;
+    margin-left: 0.5vmin;
+    margin-right: 0.5vmin;
 }
 
 .user-tag {
@@ -1027,44 +1035,45 @@ main.upload-page{
 }
 
 .industrial-res {
-    border: 1px solid #80ffdb;
-    color: #80ffdb;
+    border: 1px solid white;
+    background-color: #80ffdb;
+    color: white;
 }
 
 .metallic-res{
-    border: 1px solid #eb7f58;
-    color: #eb7f58;
+    border: 1px solid white;
+    background-color: #463f3a;
+    color: white;
 }
 
 .fertilizer-res{
-    border: 1px solid #80b918;
-    color: #80b918;
-}
-.fertilizer-res:hover {
-    border: 1px solid #80b918;
-    background-color: #80b918;
-    color: black;
-    cursor: pointer;
+    border: 1px solid white;
+    background-color: #71762b;
+    color: white;
 }
 
 .energy-res{
-    border: 1px solid #80ffdb;
-    color: #80ffdb;
+    border: 1px solid white;
+    background-color: #003566;
+    color: white;
 }
 
 .industrial-res{
-    border: 1px solid #48cae4;
-    color: #48cae4;
+    border: 1px solid #dbfefa;
+    background-color: #029cda;
+    color: #dbfefa;
 }
 
 .construction-res{
-    border: 1px solid #d1b2e0;
-    color: #d1b2e0;
+    border: 1px solid white;
+    background-color: #885610;
+    color: white;
 }
 
 .gemstone-res{
-    border: 1px solid #fd5da5;
-    color: #fd5da5;
+    border: 1px solid white;
+    background-color: #8d1c22;
+    color: white;
 }
 
 .modal-content {
