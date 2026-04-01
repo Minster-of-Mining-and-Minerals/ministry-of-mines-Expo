@@ -54,6 +54,8 @@ const get_zone = async (zone_name) => {
 }
 
 const get_user_type = async (user_id) => {
+    if (!user_id) return "Public";
+    
     const admin = await AdminUser.query()
         .select('id', 'user_id')
         .where('user_id', user_id)
@@ -77,7 +79,7 @@ const get_user_type = async (user_id) => {
         return "Gallery"
     }
 
-    return "NA"
+    return "Public"
     
 }
 
@@ -98,26 +100,19 @@ const get_common_res_type = async (zone_id) => {
     
     return commonResources;
 }
-router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
+router.get('/north', saveURL, async (req,res)=>{
     const zone_name = "Northern Zone"
     console.log(zone_name)
 
-    // const zone_img_path = 'images/zone-study-areas/north.png';
     const zone_img_path = 'images/geo_maps/northern-zone.png';
 
-    // Check User
-    // 1 - If admin, render super-north as admin
-    // 2 - If staff, render super-north as staff
-    // 3 - If galler user, render north
-    const user_type = await (await get_user_type(req.user.id)).trim();
+    const user_type = await get_user_type(req.user ? req.user.id : null);
 
     // Get zone data
     const zone = await get_zone(zone_name);
-    // console.dir(zone)
     
     // Get resources data
     const resources = await get_res(zone.id);
-    console.log('Resources length:',resources.length)
 
     // Get common resources
     const common_res_types = await get_common_res_type(zone.id)
@@ -125,7 +120,6 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
     // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
-    console.log("req.session.zoneName: ",req.session.zoneName)
 
     if (user_type === "Admin" || user_type === "Staff"){
         return res.render('super-zone', {user_type, zone, zone_img_path, resources, common_res_types})
@@ -136,40 +130,30 @@ router.get('/north', saveURL, isLoggedIn, async (req,res)=>{
             .select('role')
             .where('user_id', req.user.id).first();
         
-        console.dir(display_role)
         if (display_role.role === "Instructor") {
             return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "North") {
             return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
-    console.log("-----------------------------------------------");
+    
+    if (user_type === "Public") {
+        return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
+    }
+    
     return res.redirect('/')
 });
 
-router.get('/north-east', isLoggedIn, async (req,res)=>{
+router.get('/north-east', async (req,res)=>{
     const zone_name = "North-Eastern Zone";
-    console.log(zone_name)
-
-    // const zone_img_path = 'images/zone-study-areas/north-east.png';
     const zone_img_path = 'images/geo_maps/north-eastern-zone.png';
 
-    // Check User
-    // 1 - If admin, render super-north as admin
-    // 2 - If staff, render super-north as staff
-    // 3 - If galler user, render north
-    const user_type = await get_user_type(req.user.id);
+    const user_type = await get_user_type(req.user ? req.user.id : null);
 
-    // Get zone data
     const zone = await get_zone(zone_name);
-    
-    // Get resources data
     const resources = await get_res(zone.id);
-
-    // Get common resources
     const common_res_types = await get_common_res_type(zone.id)
 
-    // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
@@ -182,42 +166,30 @@ router.get('/north-east', isLoggedIn, async (req,res)=>{
             .select('role')
             .where('user_id', req.user.id).first();
         
-        console.dir(display_role)
         if (display_role.role === "Instructor") {
             return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "North-East") {
             return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
-    console.log("-----------------------------------------------");
+    
+    if (user_type === "Public") {
+        return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
+    }
+    
     return res.redirect('/')
 });
 
-router.get('/west', isLoggedIn, async (req,res)=>{
+router.get('/west', async (req,res)=>{
     const zone_name = "Western Zone"
-    console.log(zone_name)
-
-    // const zone_img_path = 'images/zone-study-areas/west.png';
     const zone_img_path = 'images/geo_maps/western-zone.png';
 
-    // Check User
-    // 1 - If admin, render super-north as admin
-    // 2 - If staff, render super-north as staff
-    // 3 - If galler user, render north
-    const user_type = await get_user_type(req.user.id);
+    const user_type = await get_user_type(req.user ? req.user.id : null);
 
-    // Get zone data
     const zone = await get_zone(zone_name);
-    // console.dir(zone)
-    
-    // Get resources data
     const resources = await get_res(zone.id);
-    console.log('Resources length:',resources.length)
-
-    // Get common resources
     const common_res_types = await get_common_res_type(zone.id)
 
-    // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
@@ -230,41 +202,30 @@ router.get('/west', isLoggedIn, async (req,res)=>{
             .select('role')
             .where('user_id', req.user.id).first();
         
-        console.dir(display_role)
         if (display_role.role === "Instructor") {
             return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "West") {
             return res.render('zone', {zone, zone_img_path, resources,common_res_types})
         }
     }
-    console.log("-----------------------------------------------");
-
+    
+    if (user_type === "Public") {
+        return res.render('zone', {zone, zone_img_path, resources,common_res_types})
+    }
+    
     return res.redirect('/')
 });
 
-router.get('/east', isLoggedIn, async (req,res)=>{
+router.get('/east', async (req,res)=>{
     const zone_name = 'Eastern Zone';
-    console.log(zone_name)
-
-    // const zone_img_path = 'images/zone-study-areas/east.png';
     const zone_img_path = 'images/geo_maps/eastern-zone.png';
 
-    // Check User
-    // 1 - If admin, render super-north as admin
-    // 2 - If staff, render super-north as staff
-    // 3 - If galler user, render north
-    const user_type = await get_user_type(req.user.id);
+    const user_type = await get_user_type(req.user ? req.user.id : null);
 
-    // Get zone data
     const zone = await get_zone(zone_name);
-    
-    // Get resources data
     const resources = await get_res(zone.id);
-    
-    // Get common resources
     const common_res_types = await get_common_res_type(zone.id)
 
-    // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
@@ -277,41 +238,30 @@ router.get('/east', isLoggedIn, async (req,res)=>{
             .select('role')
             .where('user_id', req.user.id).first();
         
-        console.dir(display_role)
         if (display_role.role === "Instructor") {
             return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "East") {
             return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
-    console.log("-----------------------------------------------");
+    
+    if (user_type === "Public") {
+        return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
+    }
+    
     return res.redirect('/')
 });
 
-router.get('/south', isLoggedIn, async (req,res)=>{
+router.get('/south', async (req,res)=>{
     const zone_name = "Southern Zone"
-    console.log(zone_name)
-
-    // const zone_img_path = 'images/zone-study-areas/south.png';
     const zone_img_path = 'images/geo_maps/southern-zone.png';
 
-    // Check User
-    // 1 - If admin, render super-north as admin
-    // 2 - If staff, render super-north as staff
-    // 3 - If galler user, render north
-    const user_type = await get_user_type(req.user.id);
+    const user_type = await get_user_type(req.user ? req.user.id : null);
 
-    // Get zone data
     const zone = await get_zone(zone_name);
-    // console.dir(zone)
-    
-    // Get resources data
     const resources = await get_res(zone.id);
-
-    // Get common resources
     const common_res_types = await get_common_res_type(zone.id);
 
-    // Remember current url (For breadcrumb)
     req.session.returnTo = req.originalUrl;
     req.session.zoneName = zone_name;
 
@@ -324,15 +274,17 @@ router.get('/south', isLoggedIn, async (req,res)=>{
             .select('role')
             .where('user_id', req.user.id).first();
         
-        console.dir(display_role)
         if (display_role.role === "Instructor") {
             return res.render('gallery-zone', {zone, zone_img_path,  resources, common_res_types})
         } else if(display_role.role === "South") {
             return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
         }
     }
-    console.log("-----------------------------------------------");
-
+    
+    if (user_type === "Public") {
+        return res.render('zone', {zone, zone_img_path,  resources, common_res_types})
+    }
+    
     return res.redirect('/')
 });
 

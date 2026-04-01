@@ -13,18 +13,12 @@ const methodOverride = require('method-override')
 const logger = require('morgan');
 const { passport } = require('./routes/auth');
 const session = require('express-session');
-const mysqlStore = require('express-mysql-session')(session);
+const sqliteStore = require('connect-sqlite3')(session);
 
-const options = {
-    connectionLimit: 10,
-    password: process.env.DB_PASSWORD,
-    user: process.env.DB_USERNAME,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    // createDatabaseTable: true
-}
-const sessionStore = new mysqlStore(options);
+const sessionStore = new sqliteStore({
+    db: 'sessions.sqlite3',
+    dir: './db'
+});
 const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
 
 

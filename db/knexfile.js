@@ -10,14 +10,11 @@ require("dotenv").config({path: '../.env'});
  module.exports = {
     // Initialize knex
     development: {
-      client: "mysql2",
+      client: "sqlite3",
       connection: {
-        host: 'localhost',
-        port: 3306,
-        user: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
+        filename: path.join(__dirname, 'dev.sqlite3'),
       },
+      useNullAsDefault: true,
       migrations: {
         tableName: "knex_migrations",
         directory: path.join(__dirname, '/migrations'),
