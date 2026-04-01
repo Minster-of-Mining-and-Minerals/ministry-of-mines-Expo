@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - PORT=4003
+      - DB_CLIENT=sqlite3
+      - DB_FILE=./db/dev.sqlite3
+      - SESSION_SECRET=keyboard_cat
+      - CLOUDINARY_CLOUD_NAME=amronb1230
+      - CLOUDINARY_KEY=498235156611433
+      - CLOUDINARY_SECRET=-SU7aGOiZV3A8Pbxh7K2meSmOsE
+    volumes:
+      - ./db:/app/db
+    networks:
+      - app-network
+    restart: always
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "3003:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./public:/usr/share/nginx/html/public:ro
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
