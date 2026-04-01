@@ -220,4 +220,36 @@ authRouter.post('/register/gallery-user', isLoggedIn, async function (req, res, 
 });
 
 
+authRouter.get('/profile', isLoggedIn, async function (req, res, next) {
+    const user = await User.query().findById(req.user.id);
+    res.render('update-profile', { user, message: null, error: null });
+});
+
+authRouter.post('/profile', isLoggedIn, async function (req, res, next) {
+    const { username, password, c_password } = req.body;
+    let user = await User.query().findById(req.user.id);
+
+    if (password && password !== c_password) {
+        return res.render('update-profile', { user, message: null, error: 'Passwords do not match' });
+    }
+
+    try {
+        const updateData = {};
+        if (username) updateData.username = username;
+        if (password) {
+            updateData.hash = await bcrypt.hash(password, 10);
+        }
+
+        if (Object.keys(updateData).length > 0) {
+            await User.query().patchAndFetchById(req.user.id, updateData);
+        }
+
+        user = await User.query().findById(req.user.id);
+        res.render('update-profile', { user, message: 'Profile updated successfully!', error: null });
+    } catch (err) {
+        console.error(err);
+        res.render('update-profile', { user, message: null, error: 'An error occurred while updating profile.' });
+    }
+});
+
 module.exports = {authRouter, passport};
