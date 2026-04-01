@@ -12,7 +12,9 @@ The Mineral Explorer is a web application designed to showcase various minerals 
 ## Tech Stack
 
 - **Backend**: Node.js, Express.js
-- **Database**: SQLite (via Knex.js and Objection.js)
+- **Database**: PostgreSQL 15 (via Knex.js and Objection.js)
+- **Frontend**: Nginx (Reverse Proxy & Static Asset Serving)
+- **Containerization**: Docker & Docker Compose
 - **Authentication**: Passport.js with Local Strategy
 - **Templating**: EJS with EJS-Mate
 - **Styling**: Bootstrap 5, Custom CSS
@@ -21,52 +23,46 @@ The Mineral Explorer is a web application designed to showcase various minerals 
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v14 or higher recommended)
-- npm (usually comes with Node.js)
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Installation
 
 1.  **Clone the repository**:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/Minster-of-Mining-and-Minerals/ministry-of-mines-Expo.git
     cd ministry_of_mines_expo
     ```
 
-2.  **Install dependencies**:
+2.  **Setup Environment Variables**:
+    Copy the example environment file and update the values as needed:
     ```bash
-    npm install
+    cp .env.example .env
     ```
 
-3.  **Setup Environment Variables**:
-    Create a `.env` file in the root directory (or update the existing one):
-    ```env
-    DB_CLIENT = sqlite3
-    DB_FILE = ./db/dev.sqlite3
-    SESSION_SECRET = your_secret_key
-    SERVER_HOST = localhost
+3.  **Build and Start the Application**:
+    ```bash
+    docker compose up --build -d
     ```
 
 ### Database Initialization
 
-To create the SQLite database and populate it with default data:
+To initialize the PostgreSQL database and populate it with default data:
 
 1.  **Run Migrations**:
     ```bash
-    node node_modules/knex/bin/cli.js --knexfile=./db/knexfile.js migrate:latest
+    docker compose exec backend npm run migrate
     ```
 
 2.  **Run Seeds**:
     ```bash
-    node node_modules/knex/bin/cli.js --knexfile=./db/knexfile.js seed:run
+    docker compose exec backend npm run seed:run
     ```
 
 ## Running the Application
 
-### Development Mode
-```bash
-node index.js
-```
-The application will be available at `http://localhost:3000`.
+Once the containers are built and running, the application will be available at:
+`http://localhost:3003`
 
 ## Authentication
 
@@ -84,7 +80,10 @@ Login to the admin dashboard to:
 
 ## Project Structure
 
-- `index.js`: Main entry point and server configuration.
+- `index.js`: Main entry point and server configuration (listens on port 4003).
+- `docker-compose.yml`: Orchestrates backend, database, and frontend containers.
+- `Dockerfile.backend`: Build configuration for the Node.js service.
+- `nginx.conf`: Nginx configuration for proxying and static serving.
 - `routes/`: Express routers for authentication, zones, and resources.
 - `db/`: Database configuration, migrations, seeds, and models.
 - `views/`: EJS templates for the frontend.

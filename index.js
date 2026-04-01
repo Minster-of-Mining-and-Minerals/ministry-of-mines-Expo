@@ -13,11 +13,11 @@ const methodOverride = require('method-override')
 const logger = require('morgan');
 const { passport } = require('./routes/auth');
 const session = require('express-session');
-const sqliteStore = require('connect-sqlite3')(session);
+const PgSession = require('connect-pg-simple')(session);
 
-const sessionStore = new sqliteStore({
-    db: 'sessions.sqlite3',
-    dir: './db'
+const sessionStore = new PgSession({
+    conString: `postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+    createTableIfMissing: true
 });
 const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
 

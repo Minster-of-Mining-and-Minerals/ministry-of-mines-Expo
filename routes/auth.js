@@ -221,16 +221,42 @@ authRouter.post('/register/gallery-user', isLoggedIn, async function (req, res, 
 
 
 authRouter.get('/profile', isLoggedIn, async function (req, res, next) {
-    const user = await User.query().findById(req.user.id);
-    res.render('update-profile', { user, message: null, error: null });
+    const currentUser = await User.query().findById(req.user.id);
+    let allUsers = null;
+
+    if (currentUser.is_admin) {
+        allUsers = await User.query().select('id', 'username', 'is_admin', 'is_staff').where('is_admin', false).orderBy('username');
+    }
+
+    res.render('update-profile', { user: currentUser, message: null, error: null, isAdminEditing: false, allUsers });
 });
 
 authRouter.post('/profile', isLoggedIn, async function (req, res, next) {
-    const { username, password, c_password } = req.body;
-    let user = await User.query().findById(req.user.id);
+    const { username, password, c_password, userId } = req.body;
+    const currentUser = await User.query().findById(req.user.id);
+    let targetId = req.user.id;
+    let isAdminEditing = false;
+    let allUsers = null;
+
+    if (currentUser.is_admin) {
+        allUsers = await User.query().select('id', 'username', 'is_admin', 'is_staff').where('is_admin', false).orderBy('username');
+    }
+
+    if (currentUser.is_admin && userId) {
+        targetId = userId;
+        isAdminEditing = true;
+    }
+
+    let targetUser = await User.query().findById(targetId);
 
     if (password && password !== c_password) {
-        return res.render('update-profile', { user, message: null, error: 'Passwords do not match' });
+        return res.render('update-profile', { 
+            user: targetUser, 
+            message: null, 
+            error: 'Passwords do not match', 
+            isAdminEditing,
+            allUsers
+        });
     }
 
     try {
@@ -241,14 +267,68 @@ authRouter.post('/profile', isLoggedIn, async function (req, res, next) {
         }
 
         if (Object.keys(updateData).length > 0) {
-            await User.query().patchAndFetchById(req.user.id, updateData);
+            await User.query().patchAndFetchById(targetId, updateData);
         }
 
-        user = await User.query().findById(req.user.id);
-        res.render('update-profile', { user, message: 'Profile updated successfully!', error: null });
+        targetUser = await User.query().findById(targetId);
+        res.render('update-profile', { 
+            user: targetUser, 
+            message: 'Profile updated successfully!', 
+            error: null, 
+            isAdminEditing,
+            allUsers
+        });
     } catch (err) {
         console.error(err);
-        res.render('update-profile', { user, message: null, error: 'An error occurred while updating profile.' });
+        res.render('update-profile', { 
+            user: targetUser, 
+            message: null, 
+            error: 'An error occurred while updating profile.', 
+            isAdminEditing,
+            allUsers
+        });
+    }
+});
+
+authRouter.post('/profile/delete-user', isLoggedIn, async function (req, res, next) {
+    const { userId } = req.body;
+    const currentUser = await User.query().findById(req.user.id);
+
+    if (!currentUser.is_admin) {
+        return res.status(403).send('Forbidden');
+    }
+
+    // Prevent admin from deleting themselves
+    if (userId === req.user.id) {
+        const allUsers = await User.query().select('id', 'username', 'is_admin', 'is_staff').orderBy('username');
+        return res.render('update-profile', {
+            user: currentUser,
+            message: null,
+            error: 'You cannot delete your own account.',
+            isAdminEditing: false,
+            allUsers
+        });
+    }
+
+    try {
+        const knex = User.knex();
+        // Delete related records first
+        await knex('staff_users').where('user_id', userId).del();
+        await knex('admin_user').where('user_id', userId).del();
+        await knex('gallery_users').where('user_id', userId).del();
+        // Delete user
+        await User.query().deleteById(userId);
+        return res.redirect('/profile');
+    } catch (err) {
+        console.error(err);
+        const allUsers = await User.query().select('id', 'username', 'is_admin', 'is_staff').orderBy('username');
+        return res.render('update-profile', {
+            user: currentUser,
+            message: null,
+            error: 'Failed to delete user.',
+            isAdminEditing: false,
+            allUsers
+        });
     }
 });
 

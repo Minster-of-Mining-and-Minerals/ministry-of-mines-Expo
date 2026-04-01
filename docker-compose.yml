@@ -1,6 +1,18 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=mom_expo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    restart: always
+
   backend:
     build:
       context: .
@@ -8,14 +20,18 @@ services:
     environment:
       - SERVER_HOST=0.0.0.0
       - PORT=4003
-      - DB_CLIENT=sqlite3
-      - DB_FILE=./db/dev.sqlite3
+      - DB_CLIENT=pg
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - DB_NAME=cms_db
+      - DB_HOST=db
+      - DB_PORT=5432
       - SESSION_SECRET=keyboard_cat
       - CLOUDINARY_CLOUD_NAME=amronb1230
       - CLOUDINARY_KEY=498235156611433
       - CLOUDINARY_SECRET=-SU7aGOiZV3A8Pbxh7K2meSmOsE
-    volumes:
-      - ./db:/app/db
+    depends_on:
+      - db
     networks:
       - app-network
     restart: always
@@ -36,3 +52,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  postgres_data:
