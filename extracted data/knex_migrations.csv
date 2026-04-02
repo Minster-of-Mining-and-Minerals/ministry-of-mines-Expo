@@ -1,0 +1,10 @@
+id,name,batch,migration_time
+6,20220513123654_create_zone.js,1,Fri Jun 03 2022 17:12:27 GMT+0300 (East Africa Time)
+7,20220513123920_create_resources.js,1,Fri Jun 03 2022 17:12:27 GMT+0300 (East Africa Time)
+8,20220513123933_create_zone_resources.js,1,Fri Jun 03 2022 17:12:28 GMT+0300 (East Africa Time)
+9,20220513123948_create_properties.js,1,Fri Jun 03 2022 17:12:28 GMT+0300 (East Africa Time)
+10,20220513124002_create_applications.js,1,Fri Jun 03 2022 17:12:28 GMT+0300 (East Africa Time)
+11,20220527172812_create_users.js,1,Fri Jun 03 2022 17:12:28 GMT+0300 (East Africa Time)
+12,20220527172914_create_gallery_users.js,1,Fri Jun 03 2022 17:12:28 GMT+0300 (East Africa Time)
+13,20220528062715_create_staff_users.js,1,Fri Jun 03 2022 17:12:28 GMT+0300 (East Africa Time)
+14,20220528062727_create_admin_user.js,1,Fri Jun 03 2022 17:12:29 GMT+0300 (East Africa Time)

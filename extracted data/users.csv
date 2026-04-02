@@ -1,0 +1,11 @@
+id,username,hash,is_admin,is_staff
+13ac3d1b-36bf-448b-921e-2bbe53bf7037,north-east,$2b$10$LVPUHkD5H9OORQQfW2cScemTD3qfpJcHSDXu9P/o0DRu/daXOwtIO,0,0
+51e00c6a-187d-47a9-a403-6b1f7317e43d,north,$2b$10$i3QURHU.lHuzn90tHycMB.oBAkJ3mgjzmBLADqKC.CmIwE5myTlpK,0,0
+570dcac4-1782-4baa-98c2-72c09df05a69,admin,$2b$10$50ZtHOid6pyB2rqLqRFJsO0y8OkNbZZE2BCfBC9tn.gHvbXYzfdGO,1,0
+57211c72-87b9-4431-a712-191a6546c8df,aberham,$2b$10$GD2haNY87xGSSU62lMC2fenbB4zuHGinhjIy6P9BX9tWXdDJoFKdW,0,0
+67aa1870-be1a-4cca-a0ee-bd05582e495e,staff,$2b$10$cW4.uuzXwPxgCl.MZoi4wuNji5gWIjU8kmBS06Af4e76oGTUWB8tS,0,1
+941fcd16-1168-4ca7-8f46-8c87f66e9092,testy,$2b$10$iA3An9DuKrtZtLBTHRrWUOB0BZbwVXestCsPfQ6OX5pruiB/TxDHy,0,0
+a9d57b5b-9e45-4eed-8619-6cf654254f10,instructor,$2b$10$epU7h4m5tQNeVydieFb.1O2.pS5aAdPDacZ4661kMrmOJCZaXXWBW,0,0
+ae8ea0ff-6d67-49b8-ab52-2560f16bbd17,south,$2b$10$AKlzJrP/kHgn7qE1ELA0E.Vv/vbCRioaiszIcuizdi9NzpVjQMZKO,0,0
+d58aedb1-bd2f-4eef-b195-44824508645f,east,$2b$10$fFkCDvH2WZOzTKxx5DEBOeAeJgSijztuqVRGMqtmD5Gm9Bzo/Ovyy,0,0
+e47b9c0a-e6dc-4ff7-80c4-0850eae11397,west,$2b$10$w4vIitk8.7YkjvJBtX2Iw.F.ySsBtD.H5tNxFg8SRhw4KZRO0t.rq,0,0
