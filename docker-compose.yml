@@ -23,7 +23,7 @@ services:
       - DB_CLIENT=pg
       - DB_USER=postgres
       - DB_PASSWORD=root
-      - DB_NAME=cms_db
+      - DB_NAME=mom_expo
       - DB_HOST=db
       - DB_PORT=5432
       - SESSION_SECRET=keyboard_cat
