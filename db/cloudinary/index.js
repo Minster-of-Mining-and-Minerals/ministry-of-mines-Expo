@@ -1,19 +1,21 @@
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET
-})
-
-const storage = new CloudinaryStorage({
-    cloudinary,
-    folder: 'MineralExplorer',
-    allowedFormats: ['jpeg', 'png', 'jpg']
-})
+/**
+ * local storage - This file will be used to create the local storage for the application
+ */
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../../public/resource'))
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = uuidv4();
+        const ext = path.extname(file.originalname);
+        cb(null, uniqueSuffix + ext)
+    }
+});
 
 module.exports = {
-    cloudinary,
     storage
 }
