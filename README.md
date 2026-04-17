@@ -49,15 +49,14 @@ The Mineral Explorer is a web application designed to showcase various minerals 
 
 To initialize the PostgreSQL database and populate it with default data:
 
-1.  **Run Migrations**:
-    ```bash
-    docker compose exec backend npm run migrate
-    ```
+# 1. Rollback all migrations (deletes all tables)
+docker compose exec backend npm run migrate:rollback
 
-2.  **Run Seeds**:
-    ```bash
-    docker compose exec backend npm run seed:run
-    ```
+# 2. Re-apply all migrations (creates fresh tables)
+docker compose exec backend npm run migrate
+
+# 3. Seed the new tables
+docker compose exec backend npm run seed:run
 
 ## Running the Application
 
