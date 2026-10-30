@@ -1,6 +1,14 @@
 const express = require("express");
 require('dotenv').config({ path: './.env' });
 
+// Fail fast if required settings are missing
+const missingEnv = ['DB_HOST', 'DB_USER', 'DB_PASSWORD', 'DB_NAME', 'SESSION_SECRET']
+    .filter(name => !process.env[name]);
+if (missingEnv.length) {
+    console.error("Missing required environment variables:", missingEnv.join(', '));
+    process.exit(1);
+}
+
 const compression = require('compression');
 const morgan = require('morgan');
 const ejsMate = require('ejs-mate');
@@ -30,7 +38,21 @@ const indexRouter = require('./routes/index')
 
 // Setup database
 const dbSetup = require('./db/db-setup');
-dbSetup();
+const db = dbSetup();
+
+// Requests arrive through Nginx or Docker port mapping
+server.set('trust proxy', 1);
+
+// Health check - registered before logging and sessions so probes stay quiet
+server.get('/health', async (req, res) => {
+    try {
+        await db.raw('select 1');
+        res.json({ status: 'ok' });
+    } catch (err) {
+        console.error("Health check failed:", err.message);
+        res.status(503).json({ status: 'error' });
+    }
+});
 
 // Use compression to compress server responses
 server.use(compression());
@@ -75,7 +97,7 @@ server.use(passport.session()); // persistent login sessions\
 
 server.use((req, res, next) => {
     res.locals.currentUser = req.user;
-    console.log("Current User:", req.user)
+    console.log("Current User:", req.user ? req.user.username : undefined)
     // console.dir(req.session)
     next();
 })
@@ -89,8 +111,22 @@ server.use((req, res) => {
     res.status(404).send("404");
 });
 
-server.listen(4003, process.env.SERVER_HOST, () => {
+const PORT = process.env.PORT || 4003;
+const httpServer = server.listen(PORT, process.env.SERVER_HOST, () => {
     console.log("Host:", process.env.SERVER_HOST)
-    console.log("Listening on port 4003");
+    console.log("Listening on port", PORT);
 
 });
+
+// Graceful shutdown when Docker stops the container
+const shutdown = (signal) => {
+    console.log(`${signal} received, shutting down`);
+    setTimeout(() => process.exit(1), 10000).unref();
+    httpServer.close(async () => {
+        await sessionStore.close();
+        await db.destroy();
+        process.exit(0);
+    });
+};
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

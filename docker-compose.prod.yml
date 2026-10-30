@@ -1,0 +1,95 @@
+# Production deployment for server 10.100.14.6 - see DEPLOYMENT.md
+# Run with: docker compose --env-file .env.production -f docker-compose.prod.yml up -d
+#
+#   Website  http://10.100.14.6:3006  -> mom-expo-backend:4006 (direct, no Nginx)
+#   Backend  http://10.100.14.6:4006  -> mom-expo-backend:4006
+#   Nginx    http://10.100.14.6:8086  -> mom-expo-nginx:80 -> mom-expo-backend:4006
+#   Port 5006 is reserved for this project; the app has no Socket.IO server.
+
+name: mom-expo
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: mom-expo-db
+    environment:
+      POSTGRES_USER: ${DB_USER:?DB_USER must be set in .env.production}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env.production}
+      POSTGRES_DB: ${DB_NAME:?DB_NAME must be set in .env.production}
+    volumes:
+      - mom-expo-pgdata:/var/lib/postgresql/data
+    networks:
+      - mom-expo-net
+    # No published ports: only reachable from the mom-expo-net network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    image: mom-expo-backend:latest
+    container_name: mom-expo-backend
+    environment:
+      NODE_ENV: production
+      SERVER_HOST: 0.0.0.0
+      PORT: 4006
+      DB_CLIENT: pg
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      SESSION_SECRET: ${SESSION_SECRET:?SESSION_SECRET must be set in .env.production}
+    ports:
+      - "3006:4006"
+      - "4006:4006"
+    volumes:
+      - mom-expo-uploads:/app/public/resource
+    networks:
+      - mom-expo-net
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4006/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: mom-expo-nginx
+    ports:
+      - "8086:80"
+    volumes:
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - ./public:/usr/share/nginx/html/public:ro
+    networks:
+      - mom-expo-net
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+networks:
+  mom-expo-net:
+    name: mom-expo-net
+    driver: bridge
+
+volumes:
+  mom-expo-pgdata:
+    name: mom-expo-pgdata
+  mom-expo-uploads:
+    name: mom-expo-uploads

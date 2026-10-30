@@ -49,6 +49,8 @@ The Mineral Explorer is a web application designed to showcase various minerals 
 
 To initialize the PostgreSQL database and populate it with default data:
 
+> **Local development only.** These commands delete all data. Never run them on the production server; see [DEPLOYMENT.md](DEPLOYMENT.md).
+
 # 1. Rollback all migrations (deletes all tables)
 docker compose exec backend npm run migrate:rollback
 
@@ -62,6 +64,10 @@ docker compose exec backend npm run seed:run
 
 Once the containers are built and running, the application will be available at:
 `http://localhost:3003`
+
+## Production Deployment
+
+The production deployment on server `10.100.14.6` (ports 3006, 4006 and 8086) is documented in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Authentication
 

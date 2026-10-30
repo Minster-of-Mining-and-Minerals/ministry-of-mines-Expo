@@ -4,3 +4,7 @@ npm-debug.log
 .env
 db/*.sqlite3
 .DS_Store
+.env.*
+!.env.production.example
+*.swp
+backups
